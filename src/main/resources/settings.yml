@@ -1,0 +1,9 @@
+items:
+  mechanicsHeader:
+    - "&6"
+    - " &6&lITEM MECHANICS"
+    - "&6"
+  mechanic: " &f- &&l&o%mechanic_name%"
+  mechanicsFooter:
+    - "&6"
+    - " &7&oLeft Click to use mechanics"

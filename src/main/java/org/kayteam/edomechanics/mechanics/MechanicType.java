@@ -1,0 +1,5 @@
+package org.kayteam.edomechanics.mechanics;
+
+public enum MechanicType {
+    WITHER_SKULL, SHULKER_BULLET, POTION_EFFECT, LIGHTNING, FIREBALL, ARROW_PROJECTILE, EGG_PROJECTILE, SNOWBALL_PROJECTILE
+}
