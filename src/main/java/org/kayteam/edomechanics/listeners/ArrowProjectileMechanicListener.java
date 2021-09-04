@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.ArrowProjectileMechanicEvent;
+import org.kayteam.edomechanics.mechanics.mechanics.ArrowProjectile;
+import org.kayteam.edomechanics.mechanics.mechanics.EggProjectile;
 
 public class ArrowProjectileMechanicListener implements Listener {
 
@@ -18,9 +20,6 @@ public class ArrowProjectileMechanicListener implements Listener {
 
     @EventHandler
     public void onArrowProyectileMechanic(ArrowProjectileMechanicEvent event){
-        Player player = event.getPlayer();
-        ItemStack itemUsed = event.getItemUsed();
-        Location eyeLocation = player.getEyeLocation();
-
+        new ArrowProjectile(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

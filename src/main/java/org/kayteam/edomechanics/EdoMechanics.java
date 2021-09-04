@@ -2,6 +2,7 @@ package org.kayteam.edomechanics;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kayteam.edomechanics.listeners.*;
+import org.kayteam.edomechanics.mechanics.MechanicManager;
 import org.kayteam.kayteamapi.BrandSender;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
@@ -15,7 +16,13 @@ public final class EdoMechanics extends JavaPlugin {
     public void onEnable() {
         registerFiles();
         registerListeners();
+        mechanicManager = new MechanicManager(this);
         BrandSender.sendBrandMessage(this, "&aEnabled");
+    }
+
+    private MechanicManager mechanicManager;
+    public MechanicManager getMechanicManager(){
+        return mechanicManager;
     }
 
     private void registerListeners() {

@@ -8,6 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.ArrowProjectileMechanicEvent;
 import org.kayteam.edomechanics.events.SnowballProjectileMechanicEvent;
+import org.kayteam.edomechanics.mechanics.mechanics.EggProjectile;
+import org.kayteam.edomechanics.mechanics.mechanics.SnowballProjectile;
 
 public class SnowballProjectileMechanicListener implements Listener {
 
@@ -19,9 +21,6 @@ public class SnowballProjectileMechanicListener implements Listener {
 
     @EventHandler
     public void onSnowballProjectileMechanic(SnowballProjectileMechanicEvent event){
-        Player player = event.getPlayer();
-        ItemStack itemUsed = event.getItemUsed();
-        Location eyeLocation = player.getEyeLocation();
-
+        new SnowballProjectile(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

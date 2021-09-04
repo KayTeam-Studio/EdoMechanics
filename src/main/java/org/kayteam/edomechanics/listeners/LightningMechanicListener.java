@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.ArrowProjectileMechanicEvent;
 import org.kayteam.edomechanics.events.LightningMechanicEvent;
+import org.kayteam.edomechanics.mechanics.mechanics.EggProjectile;
 
 import java.util.Objects;
 
@@ -21,9 +22,6 @@ public class LightningMechanicListener implements Listener {
 
     @EventHandler
     public void onLightningMechanic(LightningMechanicEvent event){
-        Player player = event.getPlayer();
-        ItemStack itemUsed = event.getItemUsed();
-        Location eyeLocation = player.getEyeLocation();
-        Objects.requireNonNull(eyeLocation.getWorld()).strikeLightning(eyeLocation);
+        new EggProjectile(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

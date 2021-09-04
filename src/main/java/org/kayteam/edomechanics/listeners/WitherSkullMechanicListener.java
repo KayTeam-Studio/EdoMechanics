@@ -8,6 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.ArrowProjectileMechanicEvent;
 import org.kayteam.edomechanics.events.WitherSkullMechanicEvent;
+import org.kayteam.edomechanics.mechanics.mechanics.EggProjectile;
+import org.kayteam.edomechanics.mechanics.mechanics.WitherSkull;
 
 public class WitherSkullMechanicListener implements Listener {
 
@@ -19,9 +21,6 @@ public class WitherSkullMechanicListener implements Listener {
 
     @EventHandler
     public void onWitherSkullMechanic(WitherSkullMechanicEvent event){
-        Player player = event.getPlayer();
-        ItemStack itemUsed = event.getItemUsed();
-        Location eyeLocation = player.getEyeLocation();
-
+        new WitherSkull(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }
