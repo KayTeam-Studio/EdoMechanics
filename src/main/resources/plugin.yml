@@ -1,0 +1,8 @@
+name: EdoMechanics
+version: '${project.version}'
+main: org.kayteam.edomechanics.EdoMechanics
+api-version: 1.13
+loadbefore: [ NBTAPI ]
+depend: [ NBTAPI ]
+authors: [ segu23, SirOswaldo ]
+website: https://kayteam.org
