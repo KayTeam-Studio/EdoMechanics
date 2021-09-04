@@ -28,6 +28,6 @@ public class Fireball extends Mechanic {
         direction.multiply(2);
         fireball.setVelocity(direction);
         fireball.setShooter();
-        initialLocation.getWorld().spawnArrow(initialLocation, vector, (float) 1, (float) 0, );
+        initialLocation.getWorld().spawnArrow(initialLocation, vector, (float) 1, (float) 0, fireball);
     }
 }
