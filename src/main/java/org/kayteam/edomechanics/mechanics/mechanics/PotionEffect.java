@@ -1,6 +1,5 @@
 package org.kayteam.edomechanics.mechanics.mechanics;
 
-import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;

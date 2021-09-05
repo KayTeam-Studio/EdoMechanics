@@ -1,18 +1,13 @@
 package org.kayteam.edomechanics.mechanics.mechanics;
 
-import com.google.common.collect.ImmutableMap;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.*;
-import org.bukkit.entity.ShulkerBullet;
-import org.bukkit.entity.WitherSkull;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.mechanics.Mechanic;
 import org.kayteam.edomechanics.mechanics.MechanicType;
-
-import java.util.Map;
 
 public class Fireball extends Mechanic {
 
