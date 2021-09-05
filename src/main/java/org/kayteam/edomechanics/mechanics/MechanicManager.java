@@ -1,25 +1,60 @@
 package org.kayteam.edomechanics.mechanics;
 
+import com.google.common.collect.ImmutableMap;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.kayteam.edomechanics.EdoMechanics;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 public class MechanicManager {
 
     private final EdoMechanics plugin;
 
+    private final Map<MechanicType, Class<? extends Projectile>> projectileTypes;
+
     public MechanicManager(EdoMechanics plugin) {
         this.plugin = plugin;
+        final ImmutableMap.Builder<MechanicType, Class<? extends Projectile>> builder = ImmutableMap.<MechanicType, Class<? extends Projectile>>builder()
+                .put(MechanicType.FIREBALL, org.bukkit.entity.Fireball.class)
+                .put(MechanicType.SMALL_FIREBALL, SmallFireball.class)
+                .put(MechanicType.LARGE_FIREBALL, LargeFireball.class)
+                .put(MechanicType.ARROW_PROJECTILE, Arrow.class)
+                .put(MechanicType.WITHER_SKULL, WitherSkull.class)
+                .put(MechanicType.EGG_PROJECTILE, Egg.class)
+                .put(MechanicType.SNOWBALL_PROJECTILE, Snowball.class)
+                .put(MechanicType.EXP_BOTTLE, ThrownExpBottle.class)
+                .put(MechanicType.DRAGON_FIREBALL, DragonFireball.class)
+                .put(MechanicType.SPLASH_POTION, SplashPotion.class)
+                .put(MechanicType.LINGERING_POTION, LingeringPotion.class)
+                .put(MechanicType.TRIDENT, Trident.class)
+                .put(MechanicType.SHULKER_BULLET, ShulkerBullet.class);
+        projectileTypes = builder.build();
+    }
+
+    public Map<MechanicType, Class<? extends Projectile>> getProjectileTypes(){
+        return projectileTypes;
+    }
+
+    public ItemStack clearItemPotionEffects(ItemStack itemStack){
+        NBTItem nbtItem = new NBTItem(itemStack);
+        nbtItem.setObject("mechanics.potionEffects", null);
+        List<MechanicType> mechanicTypes = getItemMechanics(nbtItem.getItem());
+        return setItemMechanics(nbtItem.getItem(), mechanicTypes);
+    }
+
+    public ItemStack addItemPotionEffect(ItemStack itemStack, PotionEffect potionEffect){
+        List<PotionEffect> potionEffects = new ArrayList<>();
+        potionEffects.add(potionEffect);
+        return setItemPotionEffects(itemStack, potionEffects);
     }
 
     public List<PotionEffect> getItemPotionEffects(ItemStack itemStack){
@@ -47,6 +82,10 @@ public class MechanicManager {
     public ItemStack setItemPotionEffects(ItemStack itemStack, List<PotionEffect> potionEffects){
         NBTItem nbtItem = new NBTItem(itemStack);
         List<String> potionStringList = new ArrayList<>();
+        List<MechanicType> mechanicTypes = getItemMechanics(itemStack);
+        if(!mechanicTypes.contains(MechanicType.POTION_EFFECT)){
+            itemStack = addItemMechanic(itemStack, MechanicType.POTION_EFFECT);
+        }
         nbtItem.setObject("mechanics.potionEffects", null);
         for(PotionEffect potionEffect : potionEffects){
             potionStringList.add(potionEffect.toString()+":"+potionEffect.getDuration()+":"+potionEffect.getAmplifier());
