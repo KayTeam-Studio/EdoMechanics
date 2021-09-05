@@ -1,0 +1,8 @@
+prefix: "&6&lEdo&e&lMechanics"
+edoMechanics:
+  dropInput:
+    itemMechanicsEditor: "%prefix% &fInput an item dropping it. Press SHIFT to cancel."
+potionEffectSelector:
+  chatInput:
+    amplifierInput: "%prefix% &fInput in the chat potion amplifier. Press SHIFT to cancel."
+    durationInput: "%prefix% &fInput in the chat potion duration. Press SHIFT to cancel."

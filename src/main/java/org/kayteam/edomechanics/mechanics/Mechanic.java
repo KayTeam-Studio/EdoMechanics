@@ -12,10 +12,10 @@ public abstract class Mechanic {
     private final ItemStack itemUsed;
 
     public Mechanic(EdoMechanics plugin, MechanicType mechanicType, Player player, ItemStack itemUsed) {
+        this.plugin = plugin;
         this.mechanicType = mechanicType;
         this.player = player;
         this.itemUsed = itemUsed;
-        this.plugin = plugin;
     }
 
     public EdoMechanics getPlugin() {

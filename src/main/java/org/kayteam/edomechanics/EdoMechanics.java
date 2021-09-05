@@ -4,6 +4,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.kayteam.edomechanics.listeners.*;
 import org.kayteam.edomechanics.mechanics.MechanicManager;
 import org.kayteam.kayteamapi.BrandSender;
+import org.kayteam.kayteamapi.input.InputManager;
+import org.kayteam.kayteamapi.inventory.InventoryManager;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
 public final class EdoMechanics extends JavaPlugin {
@@ -20,9 +22,22 @@ public final class EdoMechanics extends JavaPlugin {
         BrandSender.sendBrandMessage(this, "&aEnabled");
     }
 
+    // Mechanic Manager
     private MechanicManager mechanicManager;
     public MechanicManager getMechanicManager(){
         return mechanicManager;
+    }
+
+    // Inventory Manager
+    private final InventoryManager inventoryManager = new InventoryManager(this);
+    public InventoryManager getInventoryManager() {
+        return inventoryManager;
+    }
+
+    // Input Manager
+    private final InputManager inputManager = new InputManager();
+    public InputManager getInputManager() {
+        return inputManager;
     }
 
     private void registerListeners() {

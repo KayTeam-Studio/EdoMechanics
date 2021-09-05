@@ -1,0 +1,90 @@
+edoMechanics:
+  title: "EdoMechanics"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    close:
+      material: BARRIER
+      name: "&6Close"
+      lore:
+        - "&6"
+        - "&7Left Click to close"
+    itemMechanicsEditor:
+      material: CHEST
+      name: "&6Edit Item Mechanics"
+      lore:
+        - "&6"
+        - "&7Left Click to edit item mechanics"
+itemMechanicsEditor:
+  title: "Item Mechanics Editor"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    close:
+      material: BARRIER
+      name: "&6Close"
+      lore:
+        - "&6"
+        - "&7Left Click to close"
+potionEffectSelector:
+  title: "Potion Effect Selector"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    close:
+      material: BARRIER
+      name: "&6Close"
+      lore:
+        - "&6"
+        - "&7Left Click to close"
+    potion:
+      material: POTION
+      name: "&6Potion Effect"
+      lore:
+        - "&6"
+        - "&6Effect: &f%effect_name%"
+        - "&6"
+        - "&7Left Click to select"
+    nextPage:
+      material: ARROW
+      name: "&6Next Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"
+    previousPage:
+      material: ARROW
+      name: "&6Previous Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"
+itemMechanicsSelector:
+  title: "Item Mechanics Selector"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    close:
+      material: BARRIER
+      name: "&6Close"
+      lore:
+        - "&6"
+        - "&7Left Click to close"
+    mechanic:
+      material: PAPER
+      name: "&6Item Mechanic"
+      lore:
+        - "&6"
+        - "&6Mechanic: &f%mechanic_name%"
+        - "&6"
+        - "&7Left Click to add"
+    nextPage:
+      material: ARROW
+      name: "&6Next Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"
+    previousPage:
+      material: ARROW
+      name: "&6Previous Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"

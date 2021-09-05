@@ -51,6 +51,12 @@ public class MechanicManager {
         return setItemMechanics(nbtItem.getItem(), mechanicTypes);
     }
 
+    public ItemStack addItemPotionEffects(ItemStack itemStack, List<PotionEffect> potionEffects){
+        List<PotionEffect> potionEffectList = getItemPotionEffects(itemStack);
+        potionEffectList.addAll(potionEffects);
+        return setItemPotionEffects(itemStack, potionEffectList);
+    }
+
     public ItemStack addItemPotionEffect(ItemStack itemStack, PotionEffect potionEffect){
         List<PotionEffect> potionEffects = new ArrayList<>();
         potionEffects.add(potionEffect);
