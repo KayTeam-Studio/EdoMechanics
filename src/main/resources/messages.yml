@@ -1,7 +1,11 @@
 prefix: "&6&lEdo&e&lMechanics"
 edoMechanics:
-  dropInput:
-    itemMechanicsEditor: "%prefix% &fInput an item dropping it. Press SHIFT to cancel."
+  noPermission: "%prefix% &fYou don't have permission!"
+  emptySubcommand: "%prefix% &fThe sub-command is empty!"
+  invalidSubcommand: "%prefix% &fThe sub-command is invalid!"
+  reloaded: "%prefix% &fThe plugin has been reloaded!"
+itemEditor:
+  dropItemInput: "%prefix% &fInput an item dropping it. Press SHIFT to cancel."
 potionEffectSelector:
   chatInput:
     amplifierInput: "%prefix% &fInput in the chat potion amplifier. Press SHIFT to cancel."

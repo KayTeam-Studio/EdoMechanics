@@ -1,4 +1,4 @@
-package org.kayteam.edomechanics.inventories;
+package org.kayteam.edomechanics.inventories.editor;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
