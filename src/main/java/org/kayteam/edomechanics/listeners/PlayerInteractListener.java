@@ -9,8 +9,6 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.*;
 import org.kayteam.edomechanics.mechanics.MechanicType;
 
-import java.util.List;
-
 public class PlayerInteractListener implements Listener {
 
     private final EdoMechanics plugin;
@@ -28,7 +26,7 @@ public class PlayerInteractListener implements Listener {
                 for(String mechanicName : nbtItem.getStringList("mechanics")){
                     MechanicType mechanicType = MechanicType.valueOf(mechanicName);
                     switch (mechanicType){
-                        case EGG_PROJECTILE:{
+                        case EGG:{
                             event.setCancelled(true);
                             plugin.getServer().getPluginManager().callEvent(new EggProjectileMechanicEvent(player, event.getItem()));
                             break;
@@ -43,7 +41,7 @@ public class PlayerInteractListener implements Listener {
                             plugin.getServer().getPluginManager().callEvent(new PotionEffectMechanicEvent(player, event.getItem()));
                             break;
                         }
-                        case SNOWBALL_PROJECTILE:{
+                        case SNOWBALL:{
                             event.setCancelled(true);
                             plugin.getServer().getPluginManager().callEvent(new SnowballProjectileMechanicEvent(player, event.getItem()));
                             break;
@@ -63,7 +61,7 @@ public class PlayerInteractListener implements Listener {
                             plugin.getServer().getPluginManager().callEvent(new FireballMechanicEvent(player, event.getItem()));
                             break;
                         }
-                        case ARROW_PROJECTILE:{
+                        case ARROW:{
                             event.setCancelled(true);
                             plugin.getServer().getPluginManager().callEvent(new ArrowProjectileMechanicEvent(player, event.getItem()));
                             break;

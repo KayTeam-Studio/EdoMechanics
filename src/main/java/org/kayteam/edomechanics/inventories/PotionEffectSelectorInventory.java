@@ -2,10 +2,8 @@ package org.kayteam.edomechanics.inventories;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.kayteam.edomechanics.EdoMechanics;
-import org.kayteam.edomechanics.mechanics.MechanicType;
 import org.kayteam.kayteamapi.input.inputs.ChatInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
@@ -33,12 +31,23 @@ public class PotionEffectSelectorInventory extends InventoryBuilder {
                     plugin.getInputManager().addInput(player, new ChatInput() {
                         @Override
                         public boolean onChatInput(Player player, String s) {
+                            plugin.getInputManager().addInput(player, new ChatInput() {
+                                @Override
+                                public boolean onChatInput(Player player, String s) {
+                                    return false;
+                                }
+
+                                @Override
+                                public void onPlayerSneak(Player player) {
+                                    plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemStack, page - 1));
+                                }
+                            });
                             return false;
                         }
 
                         @Override
                         public void onPlayerSneak(Player player) {
-
+                            plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemStack, page - 1));
                         }
                     });
                 });

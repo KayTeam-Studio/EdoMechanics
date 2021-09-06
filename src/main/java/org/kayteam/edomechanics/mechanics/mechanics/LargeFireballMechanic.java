@@ -9,10 +9,10 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.mechanics.Mechanic;
 import org.kayteam.edomechanics.mechanics.MechanicType;
 
-public class Fireball extends Mechanic {
+public class LargeFireballMechanic extends Mechanic {
 
-    public Fireball(EdoMechanics plugin, Player player, ItemStack itemUsed) {
-        super(plugin, MechanicType.FIREBALL, player, itemUsed);
+    public LargeFireballMechanic(EdoMechanics plugin, Player player, ItemStack itemUsed) {
+        super(plugin, MechanicType.LARGE_FIREBALL, player, itemUsed);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Fireball extends Mechanic {
         Vector direction = targetLocation.getDirection().multiply(2);
         final Projectile projectile = getPlayer().getWorld().spawn(getPlayer().getEyeLocation().add(
                 direction.getX(), direction.getY(), direction.getZ()),
-                getPlugin().getMechanicManager().getProjectileTypes().get(MechanicType.FIREBALL));
+                getPlugin().getMechanicManager().getProjectileTypes().get(MechanicType.LARGE_FIREBALL));
         projectile.setShooter(getPlayer());
         projectile.setVelocity(direction);
     }

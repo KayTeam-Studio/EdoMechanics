@@ -9,10 +9,10 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.mechanics.Mechanic;
 import org.kayteam.edomechanics.mechanics.MechanicType;
 
-public class WitherSkull extends Mechanic {
+public class SmallFireballMechanic extends Mechanic {
 
-    public WitherSkull(EdoMechanics plugin, Player player, ItemStack itemUsed) {
-        super(plugin, MechanicType.WITHER_SKULL, player, itemUsed);
+    public SmallFireballMechanic(EdoMechanics plugin, Player player, ItemStack itemUsed) {
+        super(plugin, MechanicType.SMALL_FIREBALL, player, itemUsed);
     }
 
     @Override
@@ -20,8 +20,8 @@ public class WitherSkull extends Mechanic {
         Location targetLocation = getPlayer().getEyeLocation();
         Vector direction = targetLocation.getDirection().multiply(2);
         final Projectile projectile = getPlayer().getWorld().spawn(getPlayer().getEyeLocation().add(
-                        direction.getX(), direction.getY(), direction.getZ()),
-                getPlugin().getMechanicManager().getProjectileTypes().get(MechanicType.WITHER_SKULL));
+                direction.getX(), direction.getY(), direction.getZ()),
+                getPlugin().getMechanicManager().getProjectileTypes().get(MechanicType.SMALL_FIREBALL));
         projectile.setShooter(getPlayer());
         projectile.setVelocity(direction);
     }

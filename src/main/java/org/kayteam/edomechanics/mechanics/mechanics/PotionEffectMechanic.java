@@ -6,9 +6,9 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.mechanics.Mechanic;
 import org.kayteam.edomechanics.mechanics.MechanicType;
 
-public class PotionEffect extends Mechanic {
+public class PotionEffectMechanic extends Mechanic {
 
-    public PotionEffect(EdoMechanics plugin, Player player, ItemStack itemUsed) {
+    public PotionEffectMechanic(EdoMechanics plugin, Player player, ItemStack itemUsed) {
         super(plugin, MechanicType.POTION_EFFECT, player, itemUsed);
     }
 

@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.WitherSkullMechanicEvent;
-import org.kayteam.edomechanics.mechanics.mechanics.WitherSkull;
+import org.kayteam.edomechanics.mechanics.mechanics.WitherSkullMechanic;
 
 public class WitherSkullMechanicListener implements Listener {
 
@@ -16,6 +16,6 @@ public class WitherSkullMechanicListener implements Listener {
 
     @EventHandler
     public void onWitherSkullMechanic(WitherSkullMechanicEvent event){
-        new WitherSkull(plugin, event.getPlayer(), event.getItemUsed()).actions();
+        new WitherSkullMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

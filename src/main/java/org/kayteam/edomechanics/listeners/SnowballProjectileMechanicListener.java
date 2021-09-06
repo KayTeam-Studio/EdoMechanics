@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.SnowballProjectileMechanicEvent;
-import org.kayteam.edomechanics.mechanics.mechanics.SnowballProjectile;
+import org.kayteam.edomechanics.mechanics.mechanics.SnowballMechanic;
 
 public class SnowballProjectileMechanicListener implements Listener {
 
@@ -16,6 +16,6 @@ public class SnowballProjectileMechanicListener implements Listener {
 
     @EventHandler
     public void onSnowballProjectileMechanic(SnowballProjectileMechanicEvent event){
-        new SnowballProjectile(plugin, event.getPlayer(), event.getItemUsed()).actions();
+        new SnowballMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

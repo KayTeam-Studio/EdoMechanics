@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.PotionEffectMechanicEvent;
-import org.kayteam.edomechanics.mechanics.mechanics.PotionEffect;
+import org.kayteam.edomechanics.mechanics.mechanics.PotionEffectMechanic;
 
 public class PotionEffectMechanicListener implements Listener {
 
@@ -16,6 +16,6 @@ public class PotionEffectMechanicListener implements Listener {
 
     @EventHandler
     public void onPotionEffectMechanic(PotionEffectMechanicEvent event){
-        new PotionEffect(plugin, event.getPlayer(), event.getItemUsed()).actions();
+        new PotionEffectMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

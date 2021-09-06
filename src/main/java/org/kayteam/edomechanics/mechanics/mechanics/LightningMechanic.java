@@ -9,9 +9,9 @@ import org.kayteam.edomechanics.mechanics.MechanicType;
 
 import java.util.Objects;
 
-public class Lightning extends Mechanic {
+public class LightningMechanic extends Mechanic {
 
-    public Lightning(EdoMechanics plugin, Player player, ItemStack itemUsed) {
+    public LightningMechanic(EdoMechanics plugin, Player player, ItemStack itemUsed) {
         super(plugin, MechanicType.LIGHTNING, player, itemUsed);
     }
 
