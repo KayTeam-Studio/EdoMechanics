@@ -43,6 +43,40 @@ mechanics:
   close:
     material: BARRIER
     name: "&6Close"
+  mechanic:
+    material: PAPER
+    name: "&6%mechanic_name%"
+    lore:
+      - "&6"
+      - "&3Left Click to remove"
+  addMechanic:
+    material: PAPER
+    name: "&6Add Mechanic"
+  addPotionEffect:
+    material: PAPER
+    name: "&6Add Potion Effect"
+mechanicsSelector:
+  inventoryTitle: "Mechanics Selector"
+  panel:
+    material: GRAY_STAINED_GLASS_PANE
+  back:
+    material: ARROW
+    name: "&6Back"
+  close:
+    material: BARRIER
+    name: "&6Close"
+  mechanic:
+    material: PAPER
+    name: "&6%mechanic_name%"
+    lore:
+      - "&6"
+      - "&3Left Click to select"
+  previousPage:
+    material: ARROW
+    name: "&6Previous Page"
+  nextPage:
+    material: ARROW
+    name: "&6Next Page"
 potionEffectSelector:
   title: "Potion Effect Selector"
   items:

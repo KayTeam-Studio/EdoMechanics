@@ -21,8 +21,9 @@ public class ItemEditorInventory extends InventoryBuilder {
         addLeftAction(8, (player, slot) -> player.closeInventory());
         // Mechanics
         addItem(12, () -> inventories.getItemStack("itemMechanicsEditor.mechanics"));
-        addLeftAction(12, (player, slot) -> plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, itemStack)));
+        addLeftAction(12, (player, slot) -> plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, itemStack, 1)));
         // Potion Effects
         addItem(14, () -> inventories.getItemStack("itemMechanicsEditor.potionEffects"));
     }
+
 }
