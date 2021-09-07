@@ -6,7 +6,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
-public class ArrowProjectileMechanicEvent extends Event implements Cancellable {
+public class ExpBottleMechanicEvent extends Event implements Cancellable {
 
     private static final HandlerList handlerList = new HandlerList();
     private boolean cancelled = false;
@@ -14,7 +14,7 @@ public class ArrowProjectileMechanicEvent extends Event implements Cancellable {
     private final Player player;
     private final ItemStack itemUsed;
 
-    public ArrowProjectileMechanicEvent(Player player, ItemStack itemUsed) {
+    public ExpBottleMechanicEvent(Player player, ItemStack itemUsed) {
         this.player = player;
         this.itemUsed = itemUsed;
     }

@@ -6,3 +6,8 @@ loadbefore: [ NBTAPI ]
 depend: [ NBTAPI ]
 authors: [ segu23, SirOswaldo ]
 website: https://kayteam.org
+commands:
+  edomechanics:
+    description: Main command
+  test:
+    description: test

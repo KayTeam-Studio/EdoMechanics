@@ -6,7 +6,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
-public class SnowballProjectileMechanicEvent extends Event implements Cancellable {
+public class TridentMechanicEvent extends Event implements Cancellable {
 
     private static final HandlerList handlerList = new HandlerList();
     private boolean cancelled = false;
@@ -14,7 +14,7 @@ public class SnowballProjectileMechanicEvent extends Event implements Cancellabl
     private final Player player;
     private final ItemStack itemUsed;
 
-    public SnowballProjectileMechanicEvent(Player player, ItemStack itemUsed) {
+    public TridentMechanicEvent(Player player, ItemStack itemUsed) {
         this.player = player;
         this.itemUsed = itemUsed;
     }

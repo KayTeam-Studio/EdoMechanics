@@ -15,7 +15,7 @@ public class LargeFireballMechanicListener implements Listener {
     }
 
     @EventHandler
-    public void onFireballMechanic(LargeFireballMechanicEvent event){
+    public void onLargeFireballMechanic(LargeFireballMechanicEvent event){
         new LargeFireballMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

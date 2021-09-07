@@ -109,12 +109,14 @@ public class MechanicManager {
     public ItemStack setItemMechanics(ItemStack itemStack, List<MechanicType> mechanicTypeList){
         ItemMeta itemMeta = itemStack.getItemMeta();
         List<String> itemLore = new ArrayList<>();
+        List<String> mechanicsStringList = new ArrayList<>();
         for(String loreLine : plugin.getSettings().getStringList("items.mechanicsHeader")){
             itemLore.add(ChatColor.translateAlternateColorCodes('&', loreLine));
         }
         for(MechanicType mechanic : mechanicTypeList){
-            itemLore.add(plugin.getSettings().getString("items.mechanic",
-                    new String[][]{{"%mechanic_name%", mechanic.toString()}}));
+            itemLore.add(ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("items.mechanic",
+                    new String[][]{{"%mechanic_name%", mechanic.toString()}})));
+            mechanicsStringList.add(mechanic.toString());
         }
         for(String loreLine : plugin.getSettings().getStringList("items.mechanicsFooter")){
             itemLore.add(ChatColor.translateAlternateColorCodes('&', loreLine));
@@ -122,7 +124,7 @@ public class MechanicManager {
         itemMeta.setLore(itemLore);
         itemStack.setItemMeta(itemMeta);
         NBTItem nbtItem = new NBTItem(itemStack);
-        nbtItem.setObject("mechanics", mechanicTypeList);
+        nbtItem.setObject("mechanics", mechanicsStringList);
         return nbtItem.getItem();
     }
 

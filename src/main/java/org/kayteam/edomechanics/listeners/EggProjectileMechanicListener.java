@@ -3,8 +3,8 @@ package org.kayteam.edomechanics.listeners;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
-import org.kayteam.edomechanics.events.EggProjectileMechanicEvent;
-import org.kayteam.edomechanics.mechanics.mechanics.EggProjectile;
+import org.kayteam.edomechanics.events.EggMechanicEvent;
+import org.kayteam.edomechanics.mechanics.mechanics.EggMechanic;
 
 public class EggProjectileMechanicListener implements Listener {
 
@@ -15,7 +15,7 @@ public class EggProjectileMechanicListener implements Listener {
     }
 
     @EventHandler
-    public void onEggProjectileMechanic(EggProjectileMechanicEvent event){
-        new EggProjectile(plugin, event.getPlayer(), event.getItemUsed()).actions();
+    public void onEggProjectileMechanic(EggMechanicEvent event){
+        new EggMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

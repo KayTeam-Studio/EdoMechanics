@@ -16,7 +16,7 @@ public class SmallFireballMechanicListener implements Listener {
     }
 
     @EventHandler
-    public void onFireballMechanic(SmallFireballMechanicEvent event){
+    public void onSmallFireballMechanic(SmallFireballMechanicEvent event){
         new SmallFireballMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
     }
 }

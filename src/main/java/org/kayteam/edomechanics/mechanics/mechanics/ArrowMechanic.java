@@ -9,9 +9,9 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.mechanics.Mechanic;
 import org.kayteam.edomechanics.mechanics.MechanicType;
 
-public class ArrowProjectile extends Mechanic {
+public class ArrowMechanic extends Mechanic {
 
-    public ArrowProjectile(EdoMechanics plugin, Player player, ItemStack itemUsed) {
+    public ArrowMechanic(EdoMechanics plugin, Player player, ItemStack itemUsed) {
         super(plugin, MechanicType.ARROW, player, itemUsed);
     }
 
