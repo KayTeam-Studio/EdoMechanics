@@ -137,8 +137,10 @@ public class MechanicManager {
     public List<MechanicType> getItemMechanics(ItemStack itemStack){
         NBTItem nbtItem = new NBTItem(itemStack);
         List<MechanicType> mechanicTypes = new ArrayList<>();
-        for(String mechanicName : nbtItem.getStringList("mechanics")){
-            mechanicTypes.add(MechanicType.valueOf(mechanicName));
+        if(nbtItem.getObject("mechanics", List.class) != null){
+            for(Object mechanicName : nbtItem.getObject("mechanics", List.class)){
+                mechanicTypes.add(MechanicType.valueOf((String) mechanicName));
+            }
         }
         return mechanicTypes;
     }

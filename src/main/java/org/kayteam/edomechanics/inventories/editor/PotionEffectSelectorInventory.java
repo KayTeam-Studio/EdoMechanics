@@ -10,7 +10,7 @@ import org.kayteam.kayteamapi.yaml.Yaml;
 
 public class PotionEffectSelectorInventory extends InventoryBuilder {
 
-    public PotionEffectSelectorInventory(EdoMechanics plugin, ItemStack itemStack, int page){
+    public PotionEffectSelectorInventory(EdoMechanics plugin, int itemSlot, int page){
         super(plugin.getInventories().getString("potionEffectSelector.title"), 6);
         Yaml inventories = plugin.getInventories();
         // FILL ITEM
@@ -39,7 +39,7 @@ public class PotionEffectSelectorInventory extends InventoryBuilder {
 
                                 @Override
                                 public void onPlayerSneak(Player player) {
-                                    plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemStack, page - 1));
+                                    plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, page - 1));
                                 }
                             });
                             return false;
@@ -47,7 +47,7 @@ public class PotionEffectSelectorInventory extends InventoryBuilder {
 
                         @Override
                         public void onPlayerSneak(Player player) {
-                            plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemStack, page - 1));
+                            plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, page - 1));
                         }
                     });
                 });
@@ -56,12 +56,12 @@ public class PotionEffectSelectorInventory extends InventoryBuilder {
         // PreviousPage
         if (page > 1) {
             addItem(45, () -> inventories.getItemStack("potionEffectSelector.items.previousPage"));
-            addLeftAction(45, (player, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemStack, page - 1)));
+            addLeftAction(45, (player, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, page - 1)));
         }
         // NextPage
         if (potionEffects.length > (page * (4 * 9))) {
             addItem(53, () -> inventories.getItemStack("potionEffectSelector.items.nextPage"));
-            addLeftAction(53, (player, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemStack, page + 1)));
+            addLeftAction(53, (player, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, page + 1)));
         }
     }
 }

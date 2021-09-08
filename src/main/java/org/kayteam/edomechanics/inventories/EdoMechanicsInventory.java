@@ -8,6 +8,9 @@ import org.kayteam.kayteamapi.input.inputs.DropInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class EdoMechanicsInventory extends InventoryBuilder {
 
     public EdoMechanicsInventory(EdoMechanics plugin){
@@ -27,7 +30,8 @@ public class EdoMechanicsInventory extends InventoryBuilder {
             plugin.getInputManager().addInput(player, new DropInput() {
                 @Override
                 public void onPLayerDrop(Player player, ItemStack itemStack) {
-                    plugin.getInventoryManager().openInventory(player, new ItemEditorInventory(plugin, itemStack));
+                    int itemSlot = Arrays.asList(player.getInventory().getContents()).indexOf(itemStack);
+                    plugin.getInventoryManager().openInventory(player, new ItemEditorInventory(plugin, player, itemSlot));
                 }
 
                 @Override
