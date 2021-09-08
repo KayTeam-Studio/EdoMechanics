@@ -6,11 +6,11 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.SnowballMechanicEvent;
 import org.kayteam.edomechanics.mechanics.mechanics.SnowballMechanic;
 
-public class SnowballProjectileMechanicListener implements Listener {
+public class SnowballMechanicListener implements Listener {
 
     private final EdoMechanics plugin;
 
-    public SnowballProjectileMechanicListener(EdoMechanics plugin) {
+    public SnowballMechanicListener(EdoMechanics plugin) {
         this.plugin = plugin;
     }
 

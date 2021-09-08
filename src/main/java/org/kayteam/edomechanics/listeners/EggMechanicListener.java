@@ -6,11 +6,11 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.EggMechanicEvent;
 import org.kayteam.edomechanics.mechanics.mechanics.EggMechanic;
 
-public class EggProjectileMechanicListener implements Listener {
+public class EggMechanicListener implements Listener {
 
     private final EdoMechanics plugin;
 
-    public EggProjectileMechanicListener(EdoMechanics plugin) {
+    public EggMechanicListener(EdoMechanics plugin) {
         this.plugin = plugin;
     }
 

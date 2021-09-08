@@ -2,7 +2,6 @@ package org.kayteam.edomechanics;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kayteam.edomechanics.commands.EdoMechanicsCommand;
-import org.kayteam.edomechanics.commands.Test;
 import org.kayteam.edomechanics.listeners.*;
 import org.kayteam.edomechanics.mechanics.MechanicManager;
 import org.kayteam.kayteamapi.BrandSender;
@@ -69,9 +68,9 @@ public final class EdoMechanics extends JavaPlugin {
     }
 
     private void registerListeners() {
-        getServer().getPluginManager().registerEvents(new ArrowProjectileMechanicListener(this), this);
+        getServer().getPluginManager().registerEvents(new ArrowMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new DragonFireballMechanicListener(this), this);
-        getServer().getPluginManager().registerEvents(new EggProjectileMechanicListener(this), this);
+        getServer().getPluginManager().registerEvents(new EggMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new ExpBottleMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new FireballMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new LargeFireballMechanicListener(this), this);
@@ -81,7 +80,7 @@ public final class EdoMechanics extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PotionEffectMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new ShulkerBulletMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new SmallFireballMechanicListener(this), this);
-        getServer().getPluginManager().registerEvents(new SnowballProjectileMechanicListener(this), this);
+        getServer().getPluginManager().registerEvents(new SnowballMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new SplashPotionMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new TridentMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new WitherSkullMechanicListener(this), this);
@@ -91,6 +90,5 @@ public final class EdoMechanics extends JavaPlugin {
 
     public void registerCommands() {
         new EdoMechanicsCommand(this);
-        new Test(this);
     }
 }

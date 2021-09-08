@@ -9,5 +9,3 @@ website: https://kayteam.org
 commands:
   edomechanics:
     description: Main command
-  test:
-    description: test

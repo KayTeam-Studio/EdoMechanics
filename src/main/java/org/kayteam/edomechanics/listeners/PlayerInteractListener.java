@@ -35,8 +35,9 @@ public class PlayerInteractListener implements Listener {
         }
         if(event.getItem() != null){
             NBTItem nbtItem = new NBTItem(event.getItem());
-            if(nbtItem.getObject("mechanics", List.class) != null){
-                for(Object mechanicName : nbtItem.getObject("mechanics", List.class)){
+            List nbtMechanicsList = nbtItem.getObject("mechanics", List.class);
+            if(nbtMechanicsList != null){
+                for(Object mechanicName : nbtMechanicsList){
                     MechanicType mechanicType = MechanicType.valueOf((String) mechanicName);
                     switch (mechanicType){
                         case EGG:{

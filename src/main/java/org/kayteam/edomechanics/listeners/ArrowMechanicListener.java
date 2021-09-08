@@ -6,11 +6,11 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.ArrowMechanicEvent;
 import org.kayteam.edomechanics.mechanics.mechanics.ArrowMechanic;
 
-public class ArrowProjectileMechanicListener implements Listener {
+public class ArrowMechanicListener implements Listener {
 
     private final EdoMechanics plugin;
 
-    public ArrowProjectileMechanicListener(EdoMechanics plugin) {
+    public ArrowMechanicListener(EdoMechanics plugin) {
         this.plugin = plugin;
     }
 
