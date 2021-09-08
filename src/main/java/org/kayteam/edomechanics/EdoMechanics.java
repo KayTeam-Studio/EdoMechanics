@@ -10,11 +10,6 @@ import org.kayteam.kayteamapi.input.InputManager;
 import org.kayteam.kayteamapi.inventory.InventoryManager;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public final class EdoMechanics extends JavaPlugin {
 
     // Files

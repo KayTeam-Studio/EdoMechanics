@@ -35,7 +35,7 @@ public class MechanicsSelectorInventory extends InventoryBuilder {
                         {"%mechanic_name%", mechanics.get(index).toString()}
                 }));
                 addLeftAction(i, (player1, slot) -> {
-                    ItemStack resultItemStack = plugin.getMechanicManager().addItemMechanic(player.getInventory().getItem(itemSlot), mechanics.get(index));
+                    ItemStack resultItemStack = plugin.getMechanicManager().addItemMechanic(player.getInventory().getContents()[itemSlot], mechanics.get(index));
                     player.getInventory().setItem(itemSlot, resultItemStack);
                     plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, player, itemSlot, 1));
                 });

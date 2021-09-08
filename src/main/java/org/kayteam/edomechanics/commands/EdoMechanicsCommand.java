@@ -34,14 +34,14 @@ public class EdoMechanicsCommand extends SimpleCommand {
             switch (arguments[0].toLowerCase()) {
                 case "reload":
                     plugin.onReload();
-                    messages.sendMessage(console, "reloaded");
+                    messages.sendMessage(console, "edoMechanics.reloaded");
                 case "version":
-                    //TODO Hacer el comando version
+                    messages.sendMessage(console, "edoMechanics.version", new String[][]{{"%version%", plugin.getDescription().getVersion()}});
                 default:
-                    messages.sendMessage(console, "invalidSubcommand");
+                    messages.sendMessage(console, "edoMechanics.invalidSubcommand");
             }
         } else {
-            messages.sendMessage(console, "emptySubcommand");
+            messages.sendMessage(console, "edoMechanics.emptySubcommand");
         }
     }
 }

@@ -4,6 +4,7 @@ edoMechanics:
   emptySubcommand: "%prefix% &fThe sub-command is empty!"
   invalidSubcommand: "%prefix% &fThe sub-command is invalid!"
   reloaded: "%prefix% &fThe plugin has been reloaded!"
+  version: "%prefix% &fActual plugin version is &6%version%&f."
 itemEditor:
   dropItemInput: "%prefix% &fInput an item dropping it. Press SHIFT to cancel."
 potionEffectSelector:

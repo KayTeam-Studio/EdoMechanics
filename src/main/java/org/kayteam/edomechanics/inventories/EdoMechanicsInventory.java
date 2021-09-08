@@ -1,5 +1,6 @@
 package org.kayteam.edomechanics.inventories;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
@@ -30,8 +31,13 @@ public class EdoMechanicsInventory extends InventoryBuilder {
             plugin.getInputManager().addInput(player, new DropInput() {
                 @Override
                 public void onPLayerDrop(Player player, ItemStack itemStack) {
-                    int itemSlot = Arrays.asList(player.getInventory().getContents()).indexOf(itemStack);
-                    plugin.getInventoryManager().openInventory(player, new ItemEditorInventory(plugin, player, itemSlot));
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            int itemSlot = Arrays.asList(player.getInventory().getContents()).indexOf(itemStack);
+                            plugin.getInventoryManager().openInventory(player, new ItemEditorInventory(plugin, player, itemSlot));
+                        }
+                    }, 1);
                 }
 
                 @Override

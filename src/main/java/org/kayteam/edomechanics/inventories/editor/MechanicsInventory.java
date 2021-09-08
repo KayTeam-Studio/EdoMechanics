@@ -1,14 +1,13 @@
 package org.kayteam.edomechanics.inventories.editor;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
-import org.kayteam.edomechanics.inventories.EdoMechanicsInventory;
 import org.kayteam.edomechanics.mechanics.MechanicType;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MechanicsInventory extends InventoryBuilder {
@@ -27,7 +26,7 @@ public class MechanicsInventory extends InventoryBuilder {
         // Preview
         addItem(4, () -> player.getInventory().getItem(itemSlot));
         // Mechanics
-        List<MechanicType> mechanics = plugin.getMechanicManager().getItemMechanics(player.getInventory().getItem(itemSlot));
+        List<MechanicType> mechanics = plugin.getMechanicManager().getItemMechanics(player.getInventory().getContents()[itemSlot]);
         for (int i = 9; i < 45; i++) {
             int index = ((page * (4 * 9)) - (4 * 9)) + (i - 9);
             if (index < mechanics.size()) {
@@ -35,8 +34,13 @@ public class MechanicsInventory extends InventoryBuilder {
                         {"%mechanic_name%", mechanics.get(index).toString()}
                 }));
                 addLeftAction(i, (player1, slot) -> {
-                    ItemStack resultItemStack = plugin.getMechanicManager().removeItemMechanic(player.getInventory().getItem(itemSlot), mechanics.get(index));
-                    plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, player, itemSlot, page));
+                    ItemStack resultItemStack = plugin.getMechanicManager().removeItemMechanic(player.getInventory().getContents()[itemSlot], mechanics.get(index));
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, player, itemSlot, page));
+                        }
+                    },1);
                 });
             }
         }

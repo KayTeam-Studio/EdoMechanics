@@ -4,24 +4,35 @@ import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.*;
 import org.kayteam.edomechanics.mechanics.MechanicType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerInteractListener implements Listener {
 
     private final EdoMechanics plugin;
 
+    List<Action> allowedActions = new ArrayList<>();
+
     public PlayerInteractListener(EdoMechanics plugin) {
         this.plugin = plugin;
+        allowedActions.add(Action.RIGHT_CLICK_AIR);
+        allowedActions.add(Action.RIGHT_CLICK_BLOCK);
+        allowedActions.add(Action.LEFT_CLICK_BLOCK);
+        allowedActions.add(Action.LEFT_CLICK_AIR);
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event){
         Player player = event.getPlayer();
+        if(!allowedActions.contains(event.getAction())){
+            return;
+        }
         if(event.getItem() != null){
             NBTItem nbtItem = new NBTItem(event.getItem());
             if(nbtItem.getObject("mechanics", List.class) != null){
