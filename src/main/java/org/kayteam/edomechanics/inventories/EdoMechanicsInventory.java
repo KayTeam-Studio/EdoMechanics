@@ -23,8 +23,8 @@ public class EdoMechanicsInventory extends InventoryBuilder {
         addItem(8, () -> inventories.getItemStack("edoMechanics.close"));
         addLeftAction(8, (player, slot) -> player.closeInventory());
         // Item Editor
-        addItem(12, () -> inventories.getItemStack("edoMechanics.itemEditor"));
-        addLeftAction(12, (player, slot) -> {
+        addItem(10, () -> inventories.getItemStack("edoMechanics.itemEditor"));
+        addLeftAction(10, (player, slot) -> {
             player.closeInventory();
             Yaml messages = plugin.getMessages();
             messages.sendMessage(player, "itemEditor.dropItemInput");

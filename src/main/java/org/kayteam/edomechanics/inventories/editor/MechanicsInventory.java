@@ -35,20 +35,14 @@ public class MechanicsInventory extends InventoryBuilder {
                 }));
                 addLeftAction(i, (player1, slot) -> {
                     ItemStack resultItemStack = plugin.getMechanicManager().removeItemMechanic(player.getInventory().getContents()[itemSlot], mechanics.get(index));
-                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                        @Override
-                        public void run() {
-                            plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, player, itemSlot, page));
-                        }
-                    },1);
+                    player.getInventory().setItem(itemSlot, resultItemStack);
+                    plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, player, itemSlot, page));
                 });
             }
         }
         // Add Mechanics
-        addItem(48, () -> inventories.getItemStack("mechanics.addMechanic"));
-        addLeftAction(48, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new MechanicsSelectorInventory(plugin, player, itemSlot, 1)));
-        // Add Potion Effect
-        addItem(50, () -> inventories.getItemStack("mechanics.addPotionEffect"));
+        addItem(49, () -> inventories.getItemStack("mechanics.addMechanic"));
+        addLeftAction(49, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new MechanicsSelectorInventory(plugin, player, itemSlot, 1)));
         // Previous Page
         if (page > 1) {
             addItem(45, () -> inventories.getItemStack("mechanics.previousPage"));

@@ -2,6 +2,7 @@ package org.kayteam.edomechanics.mechanics;
 
 import com.google.common.collect.ImmutableMap;
 import de.tr7zw.nbtapi.NBTItem;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
@@ -107,7 +108,6 @@ public class MechanicManager {
     }
 
     public ItemStack setItemMechanics(ItemStack itemStack, List<MechanicType> mechanicTypeList){
-        ItemMeta itemMeta = itemStack.getItemMeta();
         List<String> itemLore = new ArrayList<>();
         List<String> mechanicsStringList = new ArrayList<>();
         for(String loreLine : plugin.getSettings().getStringList("items.mechanicsHeader")){
@@ -121,10 +121,17 @@ public class MechanicManager {
         for(String loreLine : plugin.getSettings().getStringList("items.mechanicsFooter")){
             itemLore.add(ChatColor.translateAlternateColorCodes('&', loreLine));
         }
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
         itemMeta.setLore(itemLore);
         itemStack.setItemMeta(itemMeta);
         NBTItem nbtItem = new NBTItem(itemStack);
+        while(getItemMechanics(nbtItem.getItem()).size() != 0){
+            nbtItem.setObject("mechanics", null);
+        }
         nbtItem.setObject("mechanics", mechanicsStringList);
+        Bukkit.getLogger().info("Set "+getItemMechanics(nbtItem.getItem()).toString());
+        Bukkit.getLogger().info("Set "+mechanicTypeList.toString());
         return nbtItem.getItem();
     }
 
@@ -159,7 +166,10 @@ public class MechanicManager {
 
     public ItemStack removeItemMechanic(ItemStack itemStack, MechanicType mechanicType){
         List<MechanicType> mechanicTypes = getItemMechanics(itemStack);
-        mechanicTypes.remove(mechanicType);
+        while(mechanicTypes.contains(mechanicType)){
+            mechanicTypes.remove(mechanicType);
+        }
+        Bukkit.getLogger().info("Remove "+mechanicTypes.toString());
         return setItemMechanics(itemStack, mechanicTypes);
     }
 

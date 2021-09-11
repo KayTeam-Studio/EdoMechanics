@@ -18,12 +18,12 @@ public class MechanicsSelectorInventory extends InventoryBuilder {
         Yaml inventories = plugin.getInventories();
         // Fill
         fillItem(() -> inventories.getItemStack("mechanicsSelector.panel"), new int[]{1, 6});
-        // Close
+        // Back
         addItem(0, () -> inventories.getItemStack("mechanicsSelector.back"));
         addLeftAction(0, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, player, itemSlot, 1)));
         // Close
-        addItem(0, () -> inventories.getItemStack("mechanicsSelector.close"));
-        addLeftAction(0, (player1, slot) -> player.closeInventory());
+        addItem(8, () -> inventories.getItemStack("mechanicsSelector.close"));
+        addLeftAction(8, (player1, slot) -> player.closeInventory());
         // Mechanics
         MechanicType[] mechanicTypes = MechanicType.values();
         List<MechanicType> mechanics = Arrays.asList(mechanicTypes);

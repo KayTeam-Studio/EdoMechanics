@@ -17,6 +17,6 @@ public class LightningMechanic extends Mechanic {
 
     @Override
     public void actions() {
-        Objects.requireNonNull(getPlayer().getEyeLocation().getWorld()).strikeLightning(getPlayer().getEyeLocation());
+        getPlayer().getLocation().getWorld().strikeLightning(getPlayer().getTargetBlock(null,600).getLocation());
     }
 }
