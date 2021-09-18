@@ -11,3 +11,11 @@ potionEffectSelector:
   chatInput:
     amplifierInput: "%prefix% &fInput in the chat potion amplifier. Press SHIFT to cancel."
     durationInput: "%prefix% &fInput in the chat potion duration. Press SHIFT to cancel."
+mechanics:
+  witherSkull:
+    noPermission: "%prefix% &fYou don't have permission to use &eWitherSkull&f"
+    inCooldown: "%prefix% &fThe mechanic are in cooldown! Wait &e%seconds% seconds&f to use."
+  shulkerBullet:
+    noPermission: "%prefix% &fYou don't have permission to use &eShulkerBullet&f"
+    inCooldown: "%prefix% &fThe mechanic are in cooldown! Wait &e%seconds% seconds&f to use."
+

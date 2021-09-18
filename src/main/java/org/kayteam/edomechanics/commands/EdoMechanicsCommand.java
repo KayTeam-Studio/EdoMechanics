@@ -1,6 +1,5 @@
 package org.kayteam.edomechanics.commands;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.kayteam.edomechanics.EdoMechanics;
@@ -13,7 +12,7 @@ public class EdoMechanicsCommand extends SimpleCommand {
     private final EdoMechanics plugin;
 
     public EdoMechanicsCommand(EdoMechanics plugin) {
-        super(plugin, "EdoMechanics");
+        super("EdoMechanics");
         this.plugin = plugin;
     }
 
@@ -28,7 +27,7 @@ public class EdoMechanicsCommand extends SimpleCommand {
     }
 
     @Override
-    public void onConsoleExecute(ConsoleCommandSender console, Command command, String[] arguments) {
+    public void onConsoleExecute(ConsoleCommandSender console, String[] arguments) {
         Yaml messages = plugin.getMessages();
         if (arguments.length > 0) {
             switch (arguments[0].toLowerCase()) {

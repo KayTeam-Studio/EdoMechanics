@@ -11,6 +11,12 @@ edoMechanics:
     lore:
       - "&6"
       - "&3Left Click to edit item"
+  mechanicsSettings:
+    material: CHEST
+    name: "&6Mechanics Settings"
+    lore:
+      - "&6"
+      - "&3Left Click to open"
 itemMechanicsEditor:
   inventoryTitle: "Item Mechanics Editor"
   panel:
@@ -139,3 +145,36 @@ itemMechanicsSelector:
       lore:
         - "&6"
         - "&7Left Click to go"
+settings:
+  mechanics:
+    inventoryTitle: "Settings Mechanics"
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    back:
+      material: ARROW
+      name: "&6Back"
+    close:
+      material: BARRIER
+      name: "&6Close"
+    witherSkull:
+      material: WITHER_SKELETON_SKULL
+      name: "&6Wither Skull"
+  witherSkull:
+    inventoryTitle: "Wither Skull Settings"
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    back:
+      material: ARROW
+      name: "&6Back"
+    close:
+      material: BARRIER
+      name: "&6Close"
+    cooldown:
+      material: PAPER
+      name: "&6Cooldown"
+      lore:
+        - "&6"
+        - "&3Seconds&b: &f%seconds%"
+        - "&6"
+        - "&7Left Click to decrease"
+        - "&6Right Click to increase"

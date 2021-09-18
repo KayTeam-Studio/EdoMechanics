@@ -35,4 +35,5 @@ public abstract class Mechanic {
     }
 
     public abstract void actions();
+
 }

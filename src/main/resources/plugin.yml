@@ -4,8 +4,9 @@ main: org.kayteam.edomechanics.EdoMechanics
 api-version: 1.13
 loadbefore: [ NBTAPI ]
 depend: [ NBTAPI ]
+softdepend: [ PlaceholderAPI ]
 authors: [ segu23, SirOswaldo ]
 website: https://kayteam.org
 commands:
-  edomechanics:
-    description: Main command
+  EdoMechanics:
+    description: ""

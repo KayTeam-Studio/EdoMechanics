@@ -5,11 +5,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.inventories.editor.ItemEditorInventory;
+import org.kayteam.edomechanics.inventories.settings.MechanicListInventory;
 import org.kayteam.kayteamapi.input.inputs.DropInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class EdoMechanicsInventory extends InventoryBuilder {
@@ -46,5 +46,8 @@ public class EdoMechanicsInventory extends InventoryBuilder {
                 }
             });
         });
+        // Mechanics Settings
+        addItem(11, () -> inventories.getItemStack("edoMechanics.mechanicsSettings"));
+        addLeftAction(11, (player, i) -> plugin.getInventoryManager().openInventory(player, new MechanicListInventory(plugin)));
     }
 }

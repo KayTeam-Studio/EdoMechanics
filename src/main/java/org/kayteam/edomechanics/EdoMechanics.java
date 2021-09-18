@@ -68,6 +68,7 @@ public final class EdoMechanics extends JavaPlugin {
     }
 
     private void registerListeners() {
+        getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(this), this);
         getServer().getPluginManager().registerEvents(new ArrowMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new DragonFireballMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new EggMechanicListener(this), this);
@@ -89,6 +90,6 @@ public final class EdoMechanics extends JavaPlugin {
     }
 
     public void registerCommands() {
-        new EdoMechanicsCommand(this);
+        new EdoMechanicsCommand(this).registerCommand(this);
     }
 }
