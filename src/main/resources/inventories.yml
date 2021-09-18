@@ -178,3 +178,37 @@ settings:
         - "&6"
         - "&7Left Click to decrease"
         - "&6Right Click to increase"
+    minDamage:
+      material: PAPER
+      name: "&6Minimum Damage"
+      lore:
+        - "&6"
+        - "&3Damage&b: &f%damage%"
+        - "&6"
+        - "&7Left Click to decrease"
+        - "&6Right Click to increase"
+    maxDamage:
+      material: PAPER
+      name: "&6Maximum Damage"
+      lore:
+        - "&6"
+        - "&3Damage&b: &f%damage%"
+        - "&6"
+        - "&7Left Click to decrease"
+        - "&6Right Click to increase"
+    permissionToUse:
+      material: PAPER
+      name: "&6Permission to Use"
+      lore:
+        - "&6"
+        - "&3permission&b: &f%permission%"
+        - "&6"
+        - "&7Left Click to change"
+    permissionToBypassCooldown:
+      material: PAPER
+      name: "&6Permission to Bypass Cooldown"
+      lore:
+        - "&6"
+        - "&3permission&b: &f%permission%"
+        - "&6"
+        - "&7Left Click to change"

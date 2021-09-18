@@ -119,17 +119,4 @@ public class EntityDamageByEntityListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void onProjectileHit(ProjectileHitEvent event) {
-        Entity entity = event.getEntity();
-        EntityType entityType = entity.getType();
-        switch (entityType) {
-            case WITHER_SKULL: {
-                if (Objects.requireNonNull(entity.getMetadata(entity.getName()).get(0).value()).toString().equals("WitherSkullMechanic")) {
-                    Objects.requireNonNull(entity.getLocation().getWorld()).createExplosion(entity.getLocation(), 10);
-                }
-            }
-        }
-    }
-
 }
