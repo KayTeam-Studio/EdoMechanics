@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.mechanics.Mechanic;
@@ -24,5 +25,6 @@ public class SnowballMechanic extends Mechanic {
                 getPlugin().getMechanicManager().getProjectileTypes().get(MechanicType.SNOWBALL));
         projectile.setShooter(getPlayer());
         projectile.setVelocity(direction);
+        projectile.setMetadata(projectile.getName(), new FixedMetadataValue(getPlugin(), "SnowballMechanic"));
     }
 }

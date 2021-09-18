@@ -85,11 +85,6 @@ public class PlayerInteractListener implements Listener {
                             plugin.getServer().getPluginManager().callEvent(new TridentMechanicEvent(player, event.getItem()));
                             break;
                         }
-                        case LARGE_FIREBALL:{
-                            event.setCancelled(true);
-                            plugin.getServer().getPluginManager().callEvent(new LargeFireballMechanicEvent(player, event.getItem()));
-                            break;
-                        }
                         case SMALL_FIREBALL:{
                             event.setCancelled(true);
                             plugin.getServer().getPluginManager().callEvent(new SmallFireballMechanicEvent(player, event.getItem()));
@@ -98,21 +93,6 @@ public class PlayerInteractListener implements Listener {
                         case DRAGON_FIREBALL:{
                             event.setCancelled(true);
                             plugin.getServer().getPluginManager().callEvent(new DragonFireballMechanicEvent(player, event.getItem()));
-                            break;
-                        }
-                        case EXP_BOTTLE:{
-                            event.setCancelled(true);
-                            plugin.getServer().getPluginManager().callEvent(new ExpBottleMechanicEvent(player, event.getItem()));
-                            break;
-                        }
-                        case SPLASH_POTION:{
-                            event.setCancelled(true);
-                            plugin.getServer().getPluginManager().callEvent(new SplashPotionMechanicEvent(player, event.getItem()));
-                            break;
-                        }
-                        case LINGERING_POTION:{
-                            event.setCancelled(true);
-                            plugin.getServer().getPluginManager().callEvent(new LingeringPotionMechanicEvent(player, event.getItem()));
                             break;
                         }
                     }

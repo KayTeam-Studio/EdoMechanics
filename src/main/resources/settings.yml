@@ -8,15 +8,71 @@ items:
     - "&6"
     - " &7&oLeft Click to use mechanics"
 mechanics:
-  witherSkull:
+  arrow:
     cooldown: 10
     minDamage: 5
     maxDamage: 10
-    permissionToUse: "edomechanics.use.witherskull"
-    permissionToBypassCooldown: "edomechanics.bypass.witherskull"
+    permissionToUse: "edomechanics.use.arrow"
+    permissionToBypassCooldown: "edomechanics.bypass.arrow"
+  dragonFireball:
+    cooldown: 10
+    minDamage: 5
+    maxDamage: 10
+    permissionToUse: "edomechanics.use.dragonfireball"
+    permissionToBypassCooldown: "edomechanics.bypass.dragonfireball"
+  egg:
+    cooldown: 10
+    minDamage: 5
+    maxDamage: 10
+    permissionToUse: "edomechanics.use.egg"
+    permissionToBypassCooldown: "edomechanics.bypass.egg"
+  fireball:
+    cooldown: 10
+    minDamage: 5
+    maxDamage: 10
+    permissionToUse: "edomechanics.use.fireball"
+    permissionToBypassCooldown: "edomechanics.bypass.fireball"
+  largeFireball:
+    cooldown: 10
+    minDamage: 5
+    maxDamage: 10
+    permissionToUse: "edomechanics.use.largefireball"
+    permissionToBypassCooldown: "edomechanics.bypass.largeFireball"
+  lightning:
+    cooldown: 10
+    permissionToUse: "edomechanics.use.lightning"
+    permissionToBypassCooldown: "edomechanics.bypass.lightning"
+  potionEffect:
+    cooldown: 10
+    permissionToUse: "edomechanics.use.potionEffect"
+    permissionToBypassCooldown: "edomechanics.bypass.potionEffect"
   shulkerBullet:
     cooldown: 10
     minDamage: 5
     maxDamage: 10
     permissionToUse: "edomechanics.use.shulkerbullet"
     permissionToBypassCooldown: "edomechanics.bypass.shulkerbullet"
+  smallFireball:
+    cooldown: 10
+    minDamage: 5
+    maxDamage: 10
+    permissionToUse: "edomechanics.use.smallfireball"
+    permissionToBypassCooldown: "edomechanics.bypass.smallfireball"
+  snowball:
+    cooldown: 10
+    minDamage: 5
+    maxDamage: 10
+    permissionToUse: "edomechanics.use.snowball"
+    permissionToBypassCooldown: "edomechanics.bypass.snowball"
+  trident:
+    cooldown: 10
+    minDamage: 5
+    maxDamage: 10
+    permissionToUse: "edomechanics.use.trident"
+    permissionToBypassCooldown: "edomechanics.bypass.trident"
+  witherSkull:
+    cooldown: 10
+    minDamage: 5
+    maxDamage: 10
+    permissionToUse: "edomechanics.use.witherskull"
+    permissionToBypassCooldown: "edomechanics.bypass.witherskull"

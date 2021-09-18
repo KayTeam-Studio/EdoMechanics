@@ -1,5 +1,8 @@
 package org.kayteam.edomechanics.listeners;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,7 +38,10 @@ public class ShulkerBulletMechanicListener implements Listener {
                     long current = System.currentTimeMillis() / 1000;
                     long transcurre = current - last;
                     if (transcurre < cooldown) {
-                        messages.sendMessage(player, "mechanics.shulkerBullet.inCooldown", new String[][] {{"%seconds%", (cooldown - transcurre) + ""}});
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                                new TextComponent(ChatColor.translateAlternateColorCodes('&',
+                                        (messages.getString("mechanics.shulkerBullet.inCooldown")
+                                                .replaceAll("%seconds%", (cooldown - transcurre) + "")))));
                         return;
                     }
                 }
@@ -45,7 +51,9 @@ public class ShulkerBulletMechanicListener implements Listener {
                 lasts.put(uuid, System.currentTimeMillis());
             }
         } else {
-            messages.sendMessage(player, "mechanics.shulkerBullet.noPermission");
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                    new TextComponent(ChatColor.translateAlternateColorCodes('&',
+                            (messages.getString("mechanics.shulkerBullet.noPermission")))));
         }
     }
 }

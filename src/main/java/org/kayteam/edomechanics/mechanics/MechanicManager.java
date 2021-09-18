@@ -25,19 +25,15 @@ public class MechanicManager {
     public MechanicManager(EdoMechanics plugin) {
         this.plugin = plugin;
         final ImmutableMap.Builder<MechanicType, Class<? extends Projectile>> builder = ImmutableMap.<MechanicType, Class<? extends Projectile>>builder()
-                .put(MechanicType.FIREBALL, org.bukkit.entity.Fireball.class)
-                .put(MechanicType.SMALL_FIREBALL, SmallFireball.class)
-                .put(MechanicType.LARGE_FIREBALL, LargeFireball.class)
                 .put(MechanicType.ARROW, Arrow.class)
-                .put(MechanicType.WITHER_SKULL, WitherSkull.class)
-                .put(MechanicType.EGG, Egg.class)
-                .put(MechanicType.SNOWBALL, Snowball.class)
-                .put(MechanicType.EXP_BOTTLE, ThrownExpBottle.class)
                 .put(MechanicType.DRAGON_FIREBALL, DragonFireball.class)
-                .put(MechanicType.SPLASH_POTION, SplashPotion.class)
-                .put(MechanicType.LINGERING_POTION, LingeringPotion.class)
+                .put(MechanicType.EGG, Egg.class)
+                .put(MechanicType.FIREBALL, org.bukkit.entity.Fireball.class)
+                .put(MechanicType.SHULKER_BULLET, ShulkerBullet.class)
+                .put(MechanicType.SMALL_FIREBALL, SmallFireball.class)
+                .put(MechanicType.SNOWBALL, Snowball.class)
                 .put(MechanicType.TRIDENT, Trident.class)
-                .put(MechanicType.SHULKER_BULLET, ShulkerBullet.class);
+                .put(MechanicType.WITHER_SKULL, WitherSkull.class);
         projectileTypes = builder.build();
     }
 

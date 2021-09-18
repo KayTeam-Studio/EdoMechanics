@@ -1,9 +1,8 @@
 package org.kayteam.edomechanics.mechanics.mechanics;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.WitherSkull;
+import org.bukkit.entity.Projectile;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
@@ -22,15 +21,14 @@ public class WitherSkullMechanic extends Mechanic {
 
     @Override
     public void actions() {
-        Player player = getPlayer();
-        Location location = player.getEyeLocation();
-        World world = player.getWorld();
         Location targetLocation = getPlayer().getEyeLocation();
         Vector direction = targetLocation.getDirection().multiply(2);
-        WitherSkull witherSkull = world.spawn(location.add(direction.getX(), direction.getY(), direction.getZ()), WitherSkull.class);
-        witherSkull.setShooter(getPlayer());
-        witherSkull.setVelocity(direction);
-        witherSkull.setMetadata(witherSkull.getName(), new FixedMetadataValue(plugin, "WitherSkullMechanic"));
+        final Projectile projectile = getPlayer().getWorld().spawn(getPlayer().getEyeLocation().add(
+                        direction.getX(), direction.getY(), direction.getZ()),
+                getPlugin().getMechanicManager().getProjectileTypes().get(MechanicType.WITHER_SKULL));
+        projectile.setShooter(getPlayer());
+        projectile.setVelocity(direction);
+        projectile.setMetadata(projectile.getName(), new FixedMetadataValue(plugin, "WitherSkullMechanic"));
     }
 
 }

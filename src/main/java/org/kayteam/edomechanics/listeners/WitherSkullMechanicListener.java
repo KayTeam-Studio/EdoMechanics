@@ -1,5 +1,9 @@
 package org.kayteam.edomechanics.listeners;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,7 +38,10 @@ public class WitherSkullMechanicListener implements Listener {
                     long current = System.currentTimeMillis() / 1000;
                     long transcurre = current - last;
                     if (transcurre < cooldown) {
-                        messages.sendMessage(player, "mechanics.witherSkull.inCooldown", new String[][] {{"%seconds%", (cooldown - transcurre) + ""}});
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                                new TextComponent(ChatColor.translateAlternateColorCodes('&',
+                                        (messages.getString("mechanics.witherSkull.inCooldown")
+                                                .replaceAll("%seconds%", (cooldown - transcurre) + "")))));
                         return;
                     }
                 }
@@ -44,7 +51,9 @@ public class WitherSkullMechanicListener implements Listener {
                 lasts.put(uuid, System.currentTimeMillis());
             }
         } else {
-            messages.sendMessage(player, "mechanics.witherSkull.noPermission");
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                    new TextComponent(ChatColor.translateAlternateColorCodes('&',
+                            (messages.getString("mechanics.witherSkull.noPermission")))));
         }
     }
 }
