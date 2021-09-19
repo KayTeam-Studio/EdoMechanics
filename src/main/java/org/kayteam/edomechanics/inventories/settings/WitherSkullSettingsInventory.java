@@ -2,6 +2,7 @@ package org.kayteam.edomechanics.inventories.settings;
 
 import org.bukkit.entity.Player;
 import org.kayteam.edomechanics.EdoMechanics;
+import org.kayteam.edomechanics.inventories.editor.MechanicListInventory;
 import org.kayteam.kayteamapi.input.inputs.ChatInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;

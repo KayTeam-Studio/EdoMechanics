@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.inventories.editor.ItemEditorInventory;
-import org.kayteam.edomechanics.inventories.settings.MechanicListInventory;
+import org.kayteam.edomechanics.inventories.editor.MechanicListInventory;
 import org.kayteam.kayteamapi.input.inputs.DropInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;

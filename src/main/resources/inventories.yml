@@ -159,7 +159,7 @@ settings:
     witherSkull:
       material: WITHER_SKELETON_SKULL
       name: "&6Wither Skull"
-  witherSkull:
+  mechanic:
     inventoryTitle: "Wither Skull Settings"
     panel:
       material: GRAY_STAINED_GLASS_PANE
