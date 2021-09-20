@@ -15,15 +15,15 @@ import java.util.Arrays;
 public class EdoMechanicsInventory extends InventoryBuilder {
 
     public EdoMechanicsInventory(EdoMechanics plugin){
-        super(plugin.getInventories().getString("edoMechanics.inventoryTitle"), 6);
+        super(plugin.getInventories().getString("edoMechanics.title"), 6);
         Yaml inventories = plugin.getInventories();
         // Fill
-        fillItem(() -> inventories.getItemStack("edoMechanics.panel"));
+        fillItem(() -> inventories.getItemStack("edoMechanics.items.panel"));
         // Close
-        addItem(8, () -> inventories.getItemStack("edoMechanics.close"));
+        addItem(8, () -> inventories.getItemStack("edoMechanics.items.close"));
         addLeftAction(8, (player, slot) -> player.closeInventory());
         // Item Editor
-        addItem(10, () -> inventories.getItemStack("edoMechanics.itemEditor"));
+        addItem(10, () -> inventories.getItemStack("edoMechanics.items.itemEditor"));
         addLeftAction(10, (player, slot) -> {
             player.closeInventory();
             Yaml messages = plugin.getMessages();
@@ -47,7 +47,7 @@ public class EdoMechanicsInventory extends InventoryBuilder {
             });
         });
         // Mechanics Settings
-        addItem(11, () -> inventories.getItemStack("edoMechanics.mechanicsSettings"));
+        addItem(11, () -> inventories.getItemStack("edoMechanics.items.mechanicsSettings"));
         addLeftAction(11, (player, i) -> plugin.getInventoryManager().openInventory(player, new MechanicListInventory(plugin)));
     }
 }

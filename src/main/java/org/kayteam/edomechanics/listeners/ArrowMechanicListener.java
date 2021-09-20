@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.ArrowMechanicEvent;
+import org.kayteam.edomechanics.mechanics.MechanicType;
 import org.kayteam.edomechanics.mechanics.mechanics.ArrowMechanic;
 import org.kayteam.edomechanics.mechanics.mechanics.WitherSkullMechanic;
 import org.kayteam.kayteamapi.yaml.Yaml;
@@ -32,7 +33,7 @@ public class ArrowMechanicListener implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
         if (player.hasPermission(settings.getString("mechanics.arrow.permissionToUse"))) {
-            if (!player.hasPermission(settings.getString("mechanics.arrow.permissionToUse"))) {
+            if (!player.hasPermission(settings.getString("mechanics.arrow.permissionToBypassCooldown"))) {
                 if (lasts.containsKey(uuid)) {
                     int cooldown = settings.getInt("mechanics.arrow.cooldown");
                     long last = lasts.get(uuid) / 1000;
@@ -41,20 +42,20 @@ public class ArrowMechanicListener implements Listener {
                     if (transcurre < cooldown) {
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                                 new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                                        (messages.getString("mechanics.arrow.inCooldown")
+                                        (messages.getString("mechanics.inCooldown")
                                                 .replaceAll("%seconds%", (cooldown - transcurre) + "")))));
                         return;
                     }
                 }
             }
             new ArrowMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
-            if (!player.hasPermission(settings.getString("mechanics.witherSkull.permissionToUse"))) {
+            if (!player.hasPermission(settings.getString("mechanics.arrow.permissionToBypassCooldown"))) {
                 lasts.put(uuid, System.currentTimeMillis());
             }
         } else {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                     new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                            (messages.getString("mechanics.arrow.noPermission")))));
+                            (messages.getString("mechanics.noPermission", new String[][]{{"%mechanic_name%", MechanicType.ARROW.toString()}})))));
         }
     }
 }

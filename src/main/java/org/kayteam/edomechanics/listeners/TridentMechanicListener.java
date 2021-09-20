@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.TridentMechanicEvent;
 import org.kayteam.edomechanics.events.WitherSkullMechanicEvent;
+import org.kayteam.edomechanics.mechanics.MechanicType;
 import org.kayteam.edomechanics.mechanics.mechanics.SnowballMechanic;
 import org.kayteam.edomechanics.mechanics.mechanics.TridentMechanic;
 import org.kayteam.edomechanics.mechanics.mechanics.WitherSkullMechanic;
@@ -33,7 +34,7 @@ public class TridentMechanicListener implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
         if (player.hasPermission(settings.getString("mechanics.trident.permissionToUse"))) {
-            if (!player.hasPermission(settings.getString("mechanics.trident.permissionToUse"))) {
+            if (!player.hasPermission(settings.getString("mechanics.trident.permissionToBypassCooldown"))) {
                 if (lasts.containsKey(uuid)) {
                     int cooldown = settings.getInt("mechanics.trident.cooldown");
                     long last = lasts.get(uuid) / 1000;
@@ -42,20 +43,20 @@ public class TridentMechanicListener implements Listener {
                     if (transcurre < cooldown) {
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                                 new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                                        (messages.getString("mechanics.trident.inCooldown")
+                                        (messages.getString("mechanics.inCooldown")
                                                 .replaceAll("%seconds%", (cooldown - transcurre) + "")))));
                         return;
                     }
                 }
             }
             new TridentMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
-            if (!player.hasPermission(settings.getString("mechanics.trident.permissionToUse"))) {
+            if (!player.hasPermission(settings.getString("mechanics.trident.permissionToBypassCooldown"))) {
                 lasts.put(uuid, System.currentTimeMillis());
             }
         } else {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                     new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                            (messages.getString("mechanics.trident.noPermission")))));
+                            (messages.getString("mechanics.noPermission", new String[][]{{"%mechanic_name%", MechanicType.TRIDENT.toString()}})))));
         }
     }
 }

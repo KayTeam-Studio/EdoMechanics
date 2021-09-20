@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.DragonFireballMechanicEvent;
 import org.kayteam.edomechanics.events.WitherSkullMechanicEvent;
+import org.kayteam.edomechanics.mechanics.MechanicType;
 import org.kayteam.edomechanics.mechanics.mechanics.DragonFireballMechanic;
 import org.kayteam.edomechanics.mechanics.mechanics.WitherSkullMechanic;
 import org.kayteam.kayteamapi.yaml.Yaml;
@@ -32,7 +33,7 @@ public class DragonFireballMechanicListener implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
         if (player.hasPermission(settings.getString("mechanics.dragonFireball.permissionToUse"))) {
-            if (!player.hasPermission(settings.getString("mechanics.dragonFireball.permissionToUse"))) {
+            if (!player.hasPermission(settings.getString("mechanics.dragonFireball.permissionToBypassCooldown"))) {
                 if (lasts.containsKey(uuid)) {
                     int cooldown = settings.getInt("mechanics.dragonFireball.cooldown");
                     long last = lasts.get(uuid) / 1000;
@@ -41,20 +42,20 @@ public class DragonFireballMechanicListener implements Listener {
                     if (transcurre < cooldown) {
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                                 new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                                        (messages.getString("mechanics.dragonFireball.inCooldown")
+                                        (messages.getString("mechanics.inCooldown")
                                                 .replaceAll("%seconds%", (cooldown - transcurre) + "")))));
                         return;
                     }
                 }
             }
             new DragonFireballMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
-            if (!player.hasPermission(settings.getString("mechanics.dragonFireball.permissionToUse"))) {
+            if (!player.hasPermission(settings.getString("mechanics.dragonFireball.permissionToBypassCooldown"))) {
                 lasts.put(uuid, System.currentTimeMillis());
             }
         } else {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                     new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                            (messages.getString("mechanics.dragonFireball.noPermission")))));
+                            (messages.getString("mechanics.noPermission", new String[][]{{"%mechanic_name%", MechanicType.DRAGON_FIREBALL.toString()}})))));
         }
     }
 }

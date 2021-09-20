@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.SmallFireballMechanicEvent;
+import org.kayteam.edomechanics.mechanics.MechanicType;
 import org.kayteam.edomechanics.mechanics.mechanics.PotionEffectMechanic;
 import org.kayteam.edomechanics.mechanics.mechanics.SmallFireballMechanic;
 import org.kayteam.kayteamapi.yaml.Yaml;
@@ -31,7 +32,7 @@ public class SmallFireballMechanicListener implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
         if (player.hasPermission(settings.getString("mechanics.smallFireball.permissionToUse"))) {
-            if (!player.hasPermission(settings.getString("mechanics.smallFireball.permissionToUse"))) {
+            if (!player.hasPermission(settings.getString("mechanics.smallFireball.permissionToBypassCooldown"))) {
                 if (lasts.containsKey(uuid)) {
                     int cooldown = settings.getInt("mechanics.smallFireball.cooldown");
                     long last = lasts.get(uuid) / 1000;
@@ -40,20 +41,20 @@ public class SmallFireballMechanicListener implements Listener {
                     if (transcurre < cooldown) {
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                                 new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                                        (messages.getString("mechanics.smallFireball.inCooldown")
+                                        (messages.getString("mechanics.inCooldown")
                                                 .replaceAll("%seconds%", (cooldown - transcurre) + "")))));
                         return;
                     }
                 }
             }
             new SmallFireballMechanic(plugin, event.getPlayer(), event.getItemUsed()).actions();
-            if (!player.hasPermission(settings.getString("mechanics.smallFireball.permissionToUse"))) {
+            if (!player.hasPermission(settings.getString("mechanics.smallFireball.permissionToBypassCooldown"))) {
                 lasts.put(uuid, System.currentTimeMillis());
             }
         } else {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                     new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                            (messages.getString("mechanics.smallFireball.noPermission")))));
+                            (messages.getString("mechanics.noPermission", new String[][]{{"%mechanic_name%", MechanicType.SMALL_FIREBALL.toString()}})))));
         }
     }
 }

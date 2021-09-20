@@ -13,47 +13,47 @@ import java.util.List;
 public class MechanicListInventory extends InventoryBuilder {
 
     public MechanicListInventory(EdoMechanics plugin) {
-        super(plugin.getInventories().getString("settings.mechanics.inventoryTitle"), 6);
+        super(plugin.getInventories().getString("settings.mechanics.title"), 6);
         Yaml inventories = plugin.getInventories();
-        fillItem(() -> inventories.getItemStack("settings.mechanics.panel"));
+        fillItem(() -> inventories.getItemStack("settings.mechanics.items.panel"));
         // Back
-        addItem(0, () -> inventories.getItemStack("settings.mechanics.back"));
+        addItem(0, () -> inventories.getItemStack("settings.mechanics.items.back"));
         addLeftAction(0, (player, i) -> plugin.getInventoryManager().openInventory(player, new EdoMechanicsInventory(plugin)));
         // Close
-        addItem(8, () -> inventories.getItemStack("settings.mechanics.close"));
+        addItem(8, () -> inventories.getItemStack("settings.mechanics.items.close"));
         addLeftAction(8, (player, i) -> player.closeInventory());
         // Arrow
-        addItem(10, () -> inventories.getItemStack("settings.mechanics.arrow"));
-        addLeftAction(10, (player, i) -> plugin.getInventoryManager().openInventory(player, new ArrowSettingsInventory(plugin)));
+        addItem(9, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.ARROW.toString()}}));
+        addLeftAction(9, (player, i) -> plugin.getInventoryManager().openInventory(player, new ArrowSettingsInventory(plugin)));
         // DragonFireball
-        addItem(11, () -> inventories.getItemStack("settings.mechanics.dragonFireball"));
-        addLeftAction(11, (player, i) -> plugin.getInventoryManager().openInventory(player, new DragonFireballSettingsInventory(plugin)));
+        addItem(10, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.DRAGON_FIREBALL.toString()}}));
+        addLeftAction(10, (player, i) -> plugin.getInventoryManager().openInventory(player, new DragonFireballSettingsInventory(plugin)));
         // Egg
-        addItem(12, () -> inventories.getItemStack("settings.mechanics.egg"));
-        addLeftAction(12, (player, i) -> plugin.getInventoryManager().openInventory(player, new EggSettingsInventory(plugin)));
+        addItem(11, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.EGG.toString()}}));
+        addLeftAction(11, (player, i) -> plugin.getInventoryManager().openInventory(player, new EggSettingsInventory(plugin)));
         // Fireball
-        addItem(13, () -> inventories.getItemStack("settings.mechanics.fireball"));
-        addLeftAction(13, (player, i) -> plugin.getInventoryManager().openInventory(player, new FireballSettingsInventory(plugin)));
+        addItem(12, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.FIREBALL.toString()}}));
+        addLeftAction(12, (player, i) -> plugin.getInventoryManager().openInventory(player, new FireballSettingsInventory(plugin)));
         // Lightning
-        addItem(14, () -> inventories.getItemStack("settings.mechanics.lightning"));
-        addLeftAction(14, (player, i) -> plugin.getInventoryManager().openInventory(player, new LightningSettingsInventory(plugin)));
+        addItem(13, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.LIGHTNING.toString()}}));
+        addLeftAction(13, (player, i) -> plugin.getInventoryManager().openInventory(player, new LightningSettingsInventory(plugin)));
         // PotionEffect
-        addItem(15, () -> inventories.getItemStack("settings.mechanics.potionEffect"));
-        addLeftAction(15, (player, i) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSettingsInventory(plugin)));
+        addItem(14, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.POTION_EFFECT.toString()}}));
+        addLeftAction(14, (player, i) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSettingsInventory(plugin)));
         // ShulkerBullet
-        addItem(16, () -> inventories.getItemStack("settings.mechanics.shulkerBullet"));
-        addLeftAction(16, (player, i) -> plugin.getInventoryManager().openInventory(player, new ShulkerBulletSettingsInventory(plugin)));
+        addItem(15, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.SHULKER_BULLET.toString()}}));
+        addLeftAction(15, (player, i) -> plugin.getInventoryManager().openInventory(player, new ShulkerBulletSettingsInventory(plugin)));
         // SmallFireball
-        addItem(17, () -> inventories.getItemStack("settings.mechanics.smallFireball"));
-        addLeftAction(17, (player, i) -> plugin.getInventoryManager().openInventory(player, new SmallFireballSettingsInventory(plugin)));
+        addItem(16, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.SMALL_FIREBALL.toString()}}));
+        addLeftAction(16, (player, i) -> plugin.getInventoryManager().openInventory(player, new SmallFireballSettingsInventory(plugin)));
         // Snowball
-        addItem(18, () -> inventories.getItemStack("settings.mechanics.snowball"));
-        addLeftAction(18, (player, i) -> plugin.getInventoryManager().openInventory(player, new SnowballSettingsInventory(plugin)));
+        addItem(17, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.SNOWBALL.toString()}}));
+        addLeftAction(17, (player, i) -> plugin.getInventoryManager().openInventory(player, new SnowballSettingsInventory(plugin)));
         // Trident
-        addItem(19, () -> inventories.getItemStack("settings.mechanics.trident"));
-        addLeftAction(19, (player, i) -> plugin.getInventoryManager().openInventory(player, new TridentSettingsInventory(plugin)));
+        addItem(18, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.TRIDENT.toString()}}));
+        addLeftAction(18, (player, i) -> plugin.getInventoryManager().openInventory(player, new TridentSettingsInventory(plugin)));
         // WitherSkull
-        addItem(20, () -> inventories.getItemStack("settings.mechanics.witherSkull"));
-        addLeftAction(20, (player, i) -> plugin.getInventoryManager().openInventory(player, new WitherSkullSettingsInventory(plugin)));
+        addItem(19, () -> Yaml.replace(inventories.getItemStack("settings.mechanics.items.mechanic"), new String[][]{{"%mechanic_name%", MechanicType.WITHER_SKULL.toString()}}));
+        addLeftAction(19, (player, i) -> plugin.getInventoryManager().openInventory(player, new WitherSkullSettingsInventory(plugin)));
     }
 }

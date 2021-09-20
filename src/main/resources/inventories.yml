@@ -1,88 +1,92 @@
 edoMechanics:
-  inventoryTitle: "EdoMechanics"
-  panel:
-    material: GRAY_STAINED_GLASS_PANE
-  close:
-    material: BARRIER
-    name: "&6Close"
-  itemEditor:
-    material: CHEST
-    name: "&6Edit Item"
-    lore:
-      - "&6"
-      - "&3Left Click to edit item"
-  mechanicsSettings:
-    material: CHEST
-    name: "&6Mechanics Settings"
-    lore:
-      - "&6"
-      - "&3Left Click to open"
+  title: "EdoMechanics"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    close:
+      material: BARRIER
+      name: "&6Close"
+    itemEditor:
+      material: CHEST
+      name: "&6Edit Item"
+      lore:
+        - "&6"
+        - "&3Left Click to edit item"
+    mechanicsSettings:
+      material: CHEST
+      name: "&6Mechanics Settings"
+      lore:
+        - "&6"
+        - "&3Left Click to open"
 itemMechanicsEditor:
-  inventoryTitle: "Item Mechanics Editor"
-  panel:
-    material: GRAY_STAINED_GLASS_PANE
-  back:
-    material: ARROW
-    name: "&6Back"
-  close:
-    material: BARRIER
-    name: "&6Close"
-  mechanics:
-    material: CHEST
-    name: "&6Mechanics"
-    lore:
-      - "&6"
-      - "&3Left Click to open"
-  potionEffects:
-    material: CHEST
-    name: "&6Potion Effects"
-    lore:
-      - "&6"
-      - "&3Left Click to open"
+  title: "Item Mechanics Editor"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    back:
+      material: ARROW
+      name: "&6Back"
+    close:
+      material: BARRIER
+      name: "&6Close"
+    mechanics:
+      material: CHEST
+      name: "&6Mechanics"
+      lore:
+        - "&6"
+        - "&3Left Click to open"
+    potionEffects:
+      material: CHEST
+      name: "&6Potion Effects"
+      lore:
+        - "&6"
+        - "&3Left Click to open"
 mechanics:
-  inventoryTitle: "Mechanics"
-  panel:
-    material: GRAY_STAINED_GLASS_PANE
-  back:
-    material: ARROW
-    name: "&6Back"
-  close:
-    material: BARRIER
-    name: "&6Close"
-  mechanic:
-    material: PAPER
-    name: "&6%mechanic_name%"
-    lore:
-      - "&6"
-      - "&3Left Click to remove"
-  addMechanic:
-    material: PAPER
-    name: "&6Add Mechanic"
-  addPotionEffect:
-    material: PAPER
-    name: "&6Add Potion Effect"
+  title: "Mechanics"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    back:
+      material: ARROW
+      name: "&6Back"
+    close:
+      material: BARRIER
+      name: "&6Close"
+    mechanic:
+      material: PAPER
+      name: "&6%mechanic_name%"
+      lore:
+        - "&6"
+        - "&3Left Click to remove"
+    addMechanic:
+      material: PAPER
+      name: "&6Add Mechanic"
+    addPotionEffect:
+      material: PAPER
+      name: "&6Add Potion Effect"
 mechanicsSelector:
-  inventoryTitle: "Mechanics Selector"
-  panel:
-    material: GRAY_STAINED_GLASS_PANE
-  back:
-    material: ARROW
-    name: "&6Back"
-  close:
-    material: BARRIER
-    name: "&6Close"
-  mechanic:
-    material: PAPER
-    name: "&6%mechanic_name%"
-    lore:
-      - "&6"
-      - "&3Left Click to select"
-  previousPage:
-    material: ARROW
-    name: "&6Previous Page"
-  nextPage:
-    material: ARROW
-    name: "&6Next Page"
+  title: "Mechanics Selector"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    back:
+      material: ARROW
+      name: "&6Back"
+    close:
+      material: BARRIER
+      name: "&6Close"
+    mechanic:
+      material: PAPER
+      name: "&6%mechanic_name%"
+      lore:
+        - "&6"
+        - "&3Left Click to select"
+    previousPage:
+      material: ARROW
+      name: "&6Previous Page"
+    nextPage:
+      material: ARROW
+      name: "&6Next Page"
 potionEffectSelector:
   title: "Potion Effect Selector"
   items:
@@ -147,20 +151,79 @@ itemMechanicsSelector:
         - "&7Left Click to go"
 settings:
   mechanics:
-    inventoryTitle: "Settings Mechanics"
-    panel:
-      material: GRAY_STAINED_GLASS_PANE
-    back:
-      material: ARROW
-      name: "&6Back"
-    close:
-      material: BARRIER
-      name: "&6Close"
-    witherSkull:
-      material: WITHER_SKELETON_SKULL
-      name: "&6Wither Skull"
+    title: "Settings Mechanics"
+    items:
+      panel:
+        material: GRAY_STAINED_GLASS_PANE
+      back:
+        material: ARROW
+        name: "&6Back"
+      close:
+        material: BARRIER
+        name: "&6Close"
+      mechanic:
+        material: PAPER
+        name: "&6%mechanic_name%"
+        lore:
+          - "&6"
+          - "&7Left Click to edit"
   mechanic:
-    inventoryTitle: "Wither Skull Settings"
+    title: "&8%mechanic_name%"
+    items:
+      panel:
+        material: GRAY_STAINED_GLASS_PANE
+      back:
+        material: ARROW
+        name: "&6Back"
+      close:
+        material: BARRIER
+        name: "&6Close"
+      cooldown:
+        material: PAPER
+        name: "&6Cooldown"
+        lore:
+          - "&6"
+          - "&3Seconds&b: &f%seconds%"
+          - "&6"
+          - "&7Left Click to decrease"
+          - "&6Right Click to increase"
+      minDamage:
+        material: PAPER
+        name: "&6Minimum Damage"
+        lore:
+          - "&6"
+          - "&3Damage&b: &f%damage%"
+          - "&6"
+          - "&7Left Click to decrease"
+          - "&6Right Click to increase"
+      maxDamage:
+        material: PAPER
+        name: "&6Maximum Damage"
+        lore:
+          - "&6"
+          - "&3Damage&b: &f%damage%"
+          - "&6"
+          - "&7Left Click to decrease"
+          - "&6Right Click to increase"
+      permissionToUse:
+        material: PAPER
+        name: "&6Permission to Use"
+        lore:
+          - "&6"
+          - "&3permission&b: &f%permission%"
+          - "&6"
+          - "&7Left Click to change"
+      permissionToBypassCooldown:
+        material: PAPER
+        name: "&6Permission to Bypass Cooldown"
+        lore:
+          - "&6"
+          - "&3permission&b: &f%permission%"
+          - "&6"
+          - "&7Left Click to change"
+potionEffects:
+  title: "Potion Effects"
+  items:
     panel:
       material: GRAY_STAINED_GLASS_PANE
     back:
@@ -169,46 +232,30 @@ settings:
     close:
       material: BARRIER
       name: "&6Close"
-    cooldown:
-      material: PAPER
-      name: "&6Cooldown"
+    potionEffect:
+      material: a
+      name: "&6%effect_name%"
       lore:
         - "&6"
-        - "&3Seconds&b: &f%seconds%"
+        - "&3Duration: &f%effect_duration%"
+        - "&3Level: &f%effect_level%"
         - "&6"
-        - "&7Left Click to decrease"
-        - "&6Right Click to increase"
-    minDamage:
+        - "&7Left Click to delete"
+    addPotionEffect:
       material: PAPER
-      name: "&6Minimum Damage"
+      name: "&6Add Potion Effect"
       lore:
         - "&6"
-        - "&3Damage&b: &f%damage%"
-        - "&6"
-        - "&7Left Click to decrease"
-        - "&6Right Click to increase"
-    maxDamage:
-      material: PAPER
-      name: "&6Maximum Damage"
+        - "&7Left Click to add potion effect"
+    nextPage:
+      material: ARROW
+      name: "&6Next Page"
       lore:
         - "&6"
-        - "&3Damage&b: &f%damage%"
-        - "&6"
-        - "&7Left Click to decrease"
-        - "&6Right Click to increase"
-    permissionToUse:
-      material: PAPER
-      name: "&6Permission to Use"
+        - "&7Left Click to go"
+    previousPage:
+      material: ARROW
+      name: "&6Previous Page"
       lore:
         - "&6"
-        - "&3permission&b: &f%permission%"
-        - "&6"
-        - "&7Left Click to change"
-    permissionToBypassCooldown:
-      material: PAPER
-      name: "&6Permission to Bypass Cooldown"
-      lore:
-        - "&6"
-        - "&3permission&b: &f%permission%"
-        - "&6"
-        - "&7Left Click to change"
+        - "&7Left Click to go"

@@ -72,17 +72,13 @@ public final class EdoMechanics extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ArrowMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new DragonFireballMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new EggMechanicListener(this), this);
-        getServer().getPluginManager().registerEvents(new ExpBottleMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new FireballMechanicListener(this), this);
-        getServer().getPluginManager().registerEvents(new LargeFireballMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new LightningMechanicListener(this), this);
-        getServer().getPluginManager().registerEvents(new LingeringPotionMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(this), this);
         getServer().getPluginManager().registerEvents(new PotionEffectMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new ShulkerBulletMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new SmallFireballMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new SnowballMechanicListener(this), this);
-        getServer().getPluginManager().registerEvents(new SplashPotionMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new TridentMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(new WitherSkullMechanicListener(this), this);
         getServer().getPluginManager().registerEvents(inputManager, this);

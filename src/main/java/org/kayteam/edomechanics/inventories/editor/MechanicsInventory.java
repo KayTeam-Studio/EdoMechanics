@@ -13,15 +13,15 @@ import java.util.List;
 public class MechanicsInventory extends InventoryBuilder {
 
     public MechanicsInventory(EdoMechanics plugin, Player player, int itemSlot, int page) {
-        super(plugin.getInventories().getString("mechanics.inventoryTitle"), 6);
+        super(plugin.getInventories().getString("mechanics.title"), 6);
         Yaml inventories = plugin.getInventories();
         // Fill
-        fillItem(() -> inventories.getItemStack("mechanics.panel"), new int[] {1, 6});
+        fillItem(() -> inventories.getItemStack("mechanics.items.panel"), new int[] {1, 6});
         // Back
-        addItem(0, () -> inventories.getItemStack("mechanics.back"));
+        addItem(0, () -> inventories.getItemStack("mechanics.items.back"));
         addLeftAction(0, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new ItemEditorInventory(plugin, player, itemSlot)));
         // Close
-        addItem(8, () -> inventories.getItemStack("mechanics.close"));
+        addItem(8, () -> inventories.getItemStack("mechanics.items.close"));
         addLeftAction(8, (player1, slot) -> player.closeInventory());
         // Preview
         addItem(4, () -> player.getInventory().getItem(itemSlot));
@@ -30,7 +30,7 @@ public class MechanicsInventory extends InventoryBuilder {
         for (int i = 9; i < 45; i++) {
             int index = ((page * (4 * 9)) - (4 * 9)) + (i - 9);
             if (index < mechanics.size()) {
-                addItem(i, () -> Yaml.replace(inventories.getItemStack("mechanics.mechanic"), new String[][] {
+                addItem(i, () -> Yaml.replace(inventories.getItemStack("mechanics.items.mechanic"), new String[][] {
                         {"%mechanic_name%", mechanics.get(index).toString()}
                 }));
                 addLeftAction(i, (player1, slot) -> {
@@ -41,16 +41,16 @@ public class MechanicsInventory extends InventoryBuilder {
             }
         }
         // Add Mechanics
-        addItem(49, () -> inventories.getItemStack("mechanics.addMechanic"));
+        addItem(49, () -> inventories.getItemStack("mechanics.items.addMechanic"));
         addLeftAction(49, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new MechanicsSelectorInventory(plugin, player, itemSlot, 1)));
         // Previous Page
         if (page > 1) {
-            addItem(45, () -> inventories.getItemStack("mechanics.previousPage"));
+            addItem(45, () -> inventories.getItemStack("mechanics.items.previousPage"));
             addLeftAction(45, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new MechanicsSelectorInventory(plugin, player, itemSlot, page - 1)));
         }
         // Next Page
         if (mechanics.size() > (page * (4 * 9))) {
-            addItem(53, () -> inventories.getItemStack("mechanics.nextPage"));
+            addItem(53, () -> inventories.getItemStack("mechanics.items.nextPage"));
             addLeftAction(53, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new MechanicsSelectorInventory(plugin, player, itemSlot, page + 1)));
         }
     }
