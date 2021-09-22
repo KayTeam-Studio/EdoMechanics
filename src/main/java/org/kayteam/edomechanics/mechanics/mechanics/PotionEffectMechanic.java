@@ -1,10 +1,14 @@
 package org.kayteam.edomechanics.mechanics.mechanics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.mechanics.Mechanic;
 import org.kayteam.edomechanics.mechanics.MechanicType;
+
+import java.util.List;
 
 public class PotionEffectMechanic extends Mechanic {
 
@@ -15,7 +19,8 @@ public class PotionEffectMechanic extends Mechanic {
     @Override
     public void actions() {
         Player player = getPlayer();
-        for(org.bukkit.potion.PotionEffect potionEffect : getPlugin().getMechanicManager().getItemPotionEffects(getItemUsed())){
+        List<PotionEffect> potionEffects = getPlugin().getMechanicManager().getItemPotionEffects(getItemUsed());
+        for(PotionEffect potionEffect : potionEffects){
             player.addPotionEffect(potionEffect);
         }
     }

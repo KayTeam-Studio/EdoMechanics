@@ -22,7 +22,7 @@ public class ShulkerBulletMechanic extends Mechanic {
         Vector direction = targetLocation.getDirection().multiply(2);
         final Projectile projectile = getPlayer().getWorld().spawn(getPlayer().getEyeLocation().add(
                         direction.getX(), direction.getY(), direction.getZ()),
-                getPlugin().getMechanicManager().getProjectileTypes().get(MechanicType.WITHER_SKULL));
+                getPlugin().getMechanicManager().getProjectileTypes().get(MechanicType.SHULKER_BULLET));
         projectile.setShooter(getPlayer());
         projectile.setVelocity(direction);
         projectile.setMetadata(projectile.getName(), new FixedMetadataValue(getPlugin(), "ShulkerBulletMechanic"));

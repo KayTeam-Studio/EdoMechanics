@@ -11,13 +11,19 @@ edoMechanics:
       name: "&6Edit Item"
       lore:
         - "&6"
-        - "&3Left Click to edit item"
+        - "&7Left Click to edit item"
     mechanicsSettings:
       material: CHEST
       name: "&6Mechanics Settings"
       lore:
         - "&6"
-        - "&3Left Click to open"
+        - "&7Left Click to open"
+    worldSettings:
+      material: CHEST
+      name: "&6Worlds Settings"
+      lore:
+        - "&6"
+        - "&7Left Click to edit worlds settings"
 itemMechanicsEditor:
   title: "Item Mechanics Editor"
   items:
@@ -34,13 +40,13 @@ itemMechanicsEditor:
       name: "&6Mechanics"
       lore:
         - "&6"
-        - "&3Left Click to open"
+        - "&7Left Click to open"
     potionEffects:
       material: CHEST
       name: "&6Potion Effects"
       lore:
         - "&6"
-        - "&3Left Click to open"
+        - "&7Left Click to open"
 mechanics:
   title: "Mechanics"
   items:
@@ -57,13 +63,19 @@ mechanics:
       name: "&6%mechanic_name%"
       lore:
         - "&6"
-        - "&3Left Click to remove"
+        - "&7Left Click to remove"
     addMechanic:
       material: PAPER
       name: "&6Add Mechanic"
+      lore:
+        - "&6"
+        - "&7Left Click to add mechanic"
     addPotionEffect:
       material: PAPER
       name: "&6Add Potion Effect"
+      lore:
+        - "&6"
+        - "&7Left Click to add potion effect"
 mechanicsSelector:
   title: "Mechanics Selector"
   items:
@@ -75,29 +87,47 @@ mechanicsSelector:
     close:
       material: BARRIER
       name: "&6Close"
+    nextPage:
+      material: ARROW
+      name: "&6Next Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"
+    previousPage:
+      material: ARROW
+      name: "&6Previous Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"
     mechanic:
       material: PAPER
       name: "&6%mechanic_name%"
       lore:
         - "&6"
-        - "&3Left Click to select"
-    previousPage:
-      material: ARROW
-      name: "&6Previous Page"
-    nextPage:
-      material: ARROW
-      name: "&6Next Page"
+        - "&7Left Click to select"
 potionEffectSelector:
   title: "Potion Effect Selector"
   items:
     panel:
       material: GRAY_STAINED_GLASS_PANE
+    back:
+      material: ARROW
+      name: "&6Back"
     close:
       material: BARRIER
       name: "&6Close"
+    nextPage:
+      material: ARROW
+      name: "&6Next Page"
       lore:
         - "&6"
-        - "&7Left Click to close"
+        - "&7Left Click to go"
+    previousPage:
+      material: ARROW
+      name: "&6Previous Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"
     potion:
       material: POTION
       name: "&6Potion Effect"
@@ -106,6 +136,17 @@ potionEffectSelector:
         - "&6Effect: &f%effect_name%"
         - "&6"
         - "&7Left Click to select"
+itemMechanicsSelector:
+  title: "Item Mechanics Selector"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    back:
+      material: ARROW
+      name: "&6Back"
+    close:
+      material: BARRIER
+      name: "&6Close"
     nextPage:
       material: ARROW
       name: "&6Next Page"
@@ -118,17 +159,6 @@ potionEffectSelector:
       lore:
         - "&6"
         - "&7Left Click to go"
-itemMechanicsSelector:
-  title: "Item Mechanics Selector"
-  items:
-    panel:
-      material: GRAY_STAINED_GLASS_PANE
-    close:
-      material: BARRIER
-      name: "&6Close"
-      lore:
-        - "&6"
-        - "&7Left Click to close"
     mechanic:
       material: PAPER
       name: "&6Item Mechanic"
@@ -137,18 +167,6 @@ itemMechanicsSelector:
         - "&6Mechanic: &f%mechanic_name%"
         - "&6"
         - "&7Left Click to add"
-    nextPage:
-      material: ARROW
-      name: "&6Next Page"
-      lore:
-        - "&6"
-        - "&7Left Click to go"
-    previousPage:
-      material: ARROW
-      name: "&6Previous Page"
-      lore:
-        - "&6"
-        - "&7Left Click to go"
 settings:
   mechanics:
     title: "Settings Mechanics"
@@ -232,8 +250,20 @@ potionEffects:
     close:
       material: BARRIER
       name: "&6Close"
+    nextPage:
+      material: ARROW
+      name: "&6Next Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"
+    previousPage:
+      material: ARROW
+      name: "&6Previous Page"
+      lore:
+        - "&6"
+        - "&7Left Click to go"
     potionEffect:
-      material: a
+      material: PAPER
       name: "&6%effect_name%"
       lore:
         - "&6"
@@ -247,6 +277,33 @@ potionEffects:
       lore:
         - "&6"
         - "&7Left Click to add potion effect"
+worldEditor:
+  title: "Worlds Settings"
+  items:
+    worldEnabled:
+      material: LIME_WOOL
+      name: "&6%world%"
+      lore:
+        - "&6"
+        - "&3Status: &aEnabled"
+        - ""
+        - "&7Left Click to disable mechanics"
+    worldDisabled:
+      material: RED_WOOL
+      name: "&6%world%"
+      lore:
+        - "&6"
+        - "&3Status: &cDisabled"
+        - ""
+        - "&7Left Click to enable mechanics"
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    back:
+      material: ARROW
+      name: "&6Back"
+    close:
+      material: BARRIER
+      name: "&6Close"
     nextPage:
       material: ARROW
       name: "&6Next Page"

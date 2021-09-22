@@ -1,4 +1,5 @@
 items:
+  potionEffect: " &f- &l&o%effect_name% %effect_level% &fx &l&o%effect_duration%sec"
   mechanicsHeader:
     - "&6"
     - " &6&lITEM MECHANICS"
@@ -7,6 +8,10 @@ items:
   mechanicsFooter:
     - "&6"
     - " &7&oLeft Click to use mechanics"
+enabledWorlds:
+  - "world"
+  - "world_the_end"
+  - "world_nether"
 mechanics:
   arrow:
     cooldown: 10

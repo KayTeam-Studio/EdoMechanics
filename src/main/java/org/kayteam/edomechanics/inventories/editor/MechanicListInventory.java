@@ -15,7 +15,7 @@ public class MechanicListInventory extends InventoryBuilder {
     public MechanicListInventory(EdoMechanics plugin) {
         super(plugin.getInventories().getString("settings.mechanics.title"), 6);
         Yaml inventories = plugin.getInventories();
-        fillItem(() -> inventories.getItemStack("settings.mechanics.items.panel"));
+        fillItem(() -> inventories.getItemStack("settings.mechanics.items.panel"), new int[] {1, 6});
         // Back
         addItem(0, () -> inventories.getItemStack("settings.mechanics.items.back"));
         addLeftAction(0, (player, i) -> plugin.getInventoryManager().openInventory(player, new EdoMechanicsInventory(plugin)));

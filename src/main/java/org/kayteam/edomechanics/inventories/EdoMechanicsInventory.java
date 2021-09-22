@@ -6,6 +6,8 @@ import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.inventories.editor.ItemEditorInventory;
 import org.kayteam.edomechanics.inventories.editor.MechanicListInventory;
+import org.kayteam.edomechanics.inventories.editor.MechanicsInventory;
+import org.kayteam.edomechanics.inventories.editor.WorldEditorInventory;
 import org.kayteam.kayteamapi.input.inputs.DropInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
@@ -23,8 +25,8 @@ public class EdoMechanicsInventory extends InventoryBuilder {
         addItem(8, () -> inventories.getItemStack("edoMechanics.items.close"));
         addLeftAction(8, (player, slot) -> player.closeInventory());
         // Item Editor
-        addItem(10, () -> inventories.getItemStack("edoMechanics.items.itemEditor"));
-        addLeftAction(10, (player, slot) -> {
+        addItem(11, () -> inventories.getItemStack("edoMechanics.items.itemEditor"));
+        addLeftAction(11, (player, slot) -> {
             player.closeInventory();
             Yaml messages = plugin.getMessages();
             messages.sendMessage(player, "itemEditor.dropItemInput");
@@ -47,7 +49,10 @@ public class EdoMechanicsInventory extends InventoryBuilder {
             });
         });
         // Mechanics Settings
-        addItem(11, () -> inventories.getItemStack("edoMechanics.items.mechanicsSettings"));
-        addLeftAction(11, (player, i) -> plugin.getInventoryManager().openInventory(player, new MechanicListInventory(plugin)));
+        addItem(13, () -> inventories.getItemStack("edoMechanics.items.mechanicsSettings"));
+        addLeftAction(13, (player, i) -> plugin.getInventoryManager().openInventory(player, new MechanicListInventory(plugin)));
+        // Worlds Settings
+        addItem(15, () -> inventories.getItemStack("edoMechanics.items.worldSettings"));
+        addLeftAction(15, (player, i) -> plugin.getInventoryManager().openInventory(player, new WorldEditorInventory(plugin, 1)));
     }
 }

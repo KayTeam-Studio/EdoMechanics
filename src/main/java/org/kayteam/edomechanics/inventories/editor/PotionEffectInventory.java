@@ -25,16 +25,15 @@ public class PotionEffectInventory extends InventoryBuilder {
         addLeftAction(8, (player1, slot) -> player.closeInventory());
         // Preview
         addItem(4, () -> player.getInventory().getItem(itemSlot));
-        //
-        //
-        List<PotionEffect> potionEffects = plugin.getMechanicManager().getItemPotionEffects(player.getInventory().getItem(itemSlot));
+        // Item Potion Effects
+        List<PotionEffect> potionEffects = (List<PotionEffect>) plugin.getMechanicManager().getItemPotionEffects(player.getInventory().getItem(itemSlot));
         for (int i = 9; i < 45; i++) {
             int index = ((page * (4 * 9)) - (4 * 9)) + (i - 9);
             if (index < potionEffects.size()) {
-                addItem(i, () -> Yaml.replace(inventories.getItemStack("mechanics.items.mechanic"), new String[][] {
-                        {"%effect_name%", potionEffects.get(index).getType().toString()},
-                        {"%effect_duration%", String.valueOf(potionEffects.get(index).getDuration())},
-                        {"%effect_level%", String.valueOf(potionEffects.get(index).getDuration())}
+                addItem(i, () -> Yaml.replace(inventories.getItemStack("potionEffects.items.potionEffect"), new String[][] {
+                        {"%effect_name%", potionEffects.get(index).getType().getName()},
+                        {"%effect_duration%", String.valueOf(potionEffects.get(index).getDuration()/20)},
+                        {"%effect_level%", String.valueOf(potionEffects.get(index).getAmplifier()+2)}
                 }));
                 addLeftAction(i, (player1, slot) -> {
                     List<PotionEffect> newPotionsEffects = new ArrayList<>(potionEffects);
@@ -47,7 +46,7 @@ public class PotionEffectInventory extends InventoryBuilder {
         }
         // Add Potion Effect
         addItem(49, () -> inventories.getItemStack("potionEffects.items.addPotionEffect"));
-        addLeftAction(49, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectInventory(plugin, player, itemSlot, 1)));
+        addLeftAction(49, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, 1)));
         // Previous Page
         if (page > 1) {
             addItem(45, () -> inventories.getItemStack("potionEffects.items.previousPage"));

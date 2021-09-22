@@ -43,19 +43,19 @@ public class MechanicManager {
 
     public ItemStack clearItemPotionEffects(ItemStack itemStack){
         NBTItem nbtItem = new NBTItem(itemStack);
-        nbtItem.setObject("mechanics.potionEffects", null);
+        nbtItem.setObject("potionEffects", null);
         List<MechanicType> mechanicTypes = getItemMechanics(nbtItem.getItem());
         return setItemMechanics(nbtItem.getItem(), mechanicTypes);
     }
 
     public ItemStack addItemPotionEffects(ItemStack itemStack, List<PotionEffect> potionEffects){
-        List<PotionEffect> potionEffectList = getItemPotionEffects(itemStack);
+        List<PotionEffect> potionEffectList = (List<PotionEffect>) getItemPotionEffects(itemStack);
         potionEffectList.addAll(potionEffects);
         return setItemPotionEffects(itemStack, potionEffectList);
     }
 
     public ItemStack addItemPotionEffect(ItemStack itemStack, PotionEffect potionEffect){
-        List<PotionEffect> potionEffects = new ArrayList<>();
+        List<PotionEffect> potionEffects = getItemPotionEffects(itemStack);
         potionEffects.add(potionEffect);
         return setItemPotionEffects(itemStack, potionEffects);
     }
@@ -63,38 +63,41 @@ public class MechanicManager {
     public List<PotionEffect> getItemPotionEffects(ItemStack itemStack){
         List<PotionEffect> potionEffects = new ArrayList<>();
         NBTItem nbtItem = new NBTItem(itemStack);
-        for(String potionEffectLine : nbtItem.getStringList("mechanics.potionEffects")){
-            String[] potionEffectLineSplit = potionEffectLine.split(":");
-            try{
-                PotionEffectType potionEffectType = PotionEffectType.getByName(potionEffectLineSplit[0]);
-                int potionEffectDuration = Integer.parseInt(potionEffectLineSplit[2]);
-                int potionEffectLevel = Integer.parseInt(potionEffectLineSplit[1]);
-                if(potionEffectType != null){
-                    potionEffects.add(new org.bukkit.potion.PotionEffect(potionEffectType, potionEffectDuration, potionEffectLevel));
-                }else{
-                    plugin.getLogger().log(Level.INFO, "An item has an invalid potion effect type.");
+        if(nbtItem.getObject("potionEffects", List.class) != null){
+            for(Object potionEffectLine : nbtItem.getObject("potionEffects", List.class)){
+                String[] potionEffectLineSplit = ((String) potionEffectLine).split(":");
+                try{
+                    PotionEffectType potionEffectType = PotionEffectType.getByName(potionEffectLineSplit[0]);
+                    int potionEffectDuration = Integer.parseInt(potionEffectLineSplit[1])*20;
+                    int potionEffectLevel = Integer.parseInt(potionEffectLineSplit[2])-1;
+                    if(potionEffectType != null){
+                        potionEffects.add(new org.bukkit.potion.PotionEffect(potionEffectType, potionEffectDuration, potionEffectLevel));
+                    }else{
+                        plugin.getLogger().log(Level.INFO, "An item has an invalid potion effect type.");
+                    }
+                }catch (Exception e){
+                    plugin.getLogger().log(Level.WARNING,
+                            "An error has occured trying to get potion effect "+potionEffectLineSplit[0]);
                 }
-            }catch (Exception e){
-                plugin.getLogger().log(Level.WARNING,
-                        "An error has occured trying to get potion effect "+potionEffectLineSplit[0]);
             }
         }
         return potionEffects;
     }
 
     public ItemStack setItemPotionEffects(ItemStack itemStack, List<PotionEffect> potionEffects){
-        NBTItem nbtItem = new NBTItem(itemStack);
-        List<String> potionStringList = new ArrayList<>();
-        List<MechanicType> mechanicTypes = getItemMechanics(itemStack);
+        ItemStack newItem = itemStack;
+        List<MechanicType> mechanicTypes = getItemMechanics(newItem);
         if(!mechanicTypes.contains(MechanicType.POTION_EFFECT)){
-            itemStack = addItemMechanic(itemStack, MechanicType.POTION_EFFECT);
+            newItem = addItemMechanic(newItem, MechanicType.POTION_EFFECT);
         }
-        nbtItem.setObject("mechanics.potionEffects", null);
+        NBTItem nbtItem = new NBTItem(newItem);
+        List<String> potionStringList = new ArrayList<>();
+        nbtItem.setObject("potionEffects", null);
         for(PotionEffect potionEffect : potionEffects){
-            potionStringList.add(potionEffect.toString()+":"+potionEffect.getDuration()+":"+potionEffect.getAmplifier());
+            potionStringList.add(potionEffect.getType().getName()+":"+potionEffect.getDuration()+":"+potionEffect.getAmplifier());
         }
-        nbtItem.setObject("mechanics.potionEffects", potionStringList);
-        return nbtItem.getItem();
+        nbtItem.setObject("potionEffects", potionStringList);
+        return updateItem(nbtItem.getItem());
     }
 
     public ItemStack setItemPotionEffect(ItemStack itemStack, PotionEffect potionEffect){
@@ -103,16 +106,27 @@ public class MechanicManager {
         return setItemPotionEffects(itemStack, potionEffectList);
     }
 
-    public ItemStack setItemMechanics(ItemStack itemStack, List<MechanicType> mechanicTypeList){
+    public ItemStack updateItem(ItemStack itemStack){
         List<String> itemLore = new ArrayList<>();
         List<String> mechanicsStringList = new ArrayList<>();
+        List<MechanicType> mechanicTypeList = getItemMechanics(itemStack);
         for(String loreLine : plugin.getSettings().getStringList("items.mechanicsHeader")){
             itemLore.add(ChatColor.translateAlternateColorCodes('&', loreLine));
         }
         for(MechanicType mechanic : mechanicTypeList){
-            itemLore.add(ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("items.mechanic",
-                    new String[][]{{"%mechanic_name%", mechanic.toString()}})));
+            if(!mechanic.equals(MechanicType.POTION_EFFECT)){
+                itemLore.add(ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("items.mechanic",
+                        new String[][]{{"%mechanic_name%", mechanic.toString()}})));
+            }
             mechanicsStringList.add(mechanic.toString());
+        }
+        List<PotionEffect> potionEffects = getItemPotionEffects(itemStack);
+        for(PotionEffect potionEffect : potionEffects){
+            itemLore.add(ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("items.potionEffect",
+                    new String[][] {
+                    {"%effect_name%", potionEffect.getType().getName()},
+                    {"%effect_duration%", String.valueOf(potionEffect.getDuration()/20)},
+                    {"%effect_level%", String.valueOf(potionEffect.getAmplifier()+2)}})));
         }
         for(String loreLine : plugin.getSettings().getStringList("items.mechanicsFooter")){
             itemLore.add(ChatColor.translateAlternateColorCodes('&', loreLine));
@@ -126,9 +140,20 @@ public class MechanicManager {
             nbtItem.setObject("mechanics", null);
         }
         nbtItem.setObject("mechanics", mechanicsStringList);
-        Bukkit.getLogger().info("Set "+getItemMechanics(nbtItem.getItem()).toString());
-        Bukkit.getLogger().info("Set "+mechanicTypeList.toString());
         return nbtItem.getItem();
+    }
+
+    public ItemStack setItemMechanics(ItemStack itemStack, List<MechanicType> mechanicTypeList){
+        List<String> mechanicsStringList = new ArrayList<>();
+        for(MechanicType mechanic : mechanicTypeList){
+            mechanicsStringList.add(mechanic.toString());
+        }
+        NBTItem nbtItem = new NBTItem(itemStack);
+        while(getItemMechanics(nbtItem.getItem()).size() != 0){
+            nbtItem.setObject("mechanics", null);
+        }
+        nbtItem.setObject("mechanics", mechanicsStringList);
+        return updateItem(nbtItem.getItem());
     }
 
     public ItemStack setItemMechanic(ItemStack itemStack, MechanicType mechanicType){

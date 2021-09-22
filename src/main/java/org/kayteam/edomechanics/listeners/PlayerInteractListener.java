@@ -30,6 +30,9 @@ public class PlayerInteractListener implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event){
         Player player = event.getPlayer();
+        if(!plugin.getSettings().getStringList("enabledWorlds").contains(player.getWorld().getName())){
+            return;
+        }
         if(!allowedActions.contains(event.getAction())){
             return;
         }

@@ -23,6 +23,9 @@ public class EntityDamageByEntityListener implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+        if(!plugin.getSettings().getStringList("enabledWorlds").contains(event.getDamager().getWorld().getName())){
+            return;
+        }
         Entity entity = event.getDamager();
         EntityType entityType = entity.getType();
         switch (entityType) {
