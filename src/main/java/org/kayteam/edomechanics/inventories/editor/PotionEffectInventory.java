@@ -36,10 +36,7 @@ public class PotionEffectInventory extends InventoryBuilder {
                         {"%effect_level%", String.valueOf(potionEffects.get(index).getAmplifier()+2)}
                 }));
                 addLeftAction(i, (player1, slot) -> {
-                    List<PotionEffect> newPotionsEffects = new ArrayList<>(potionEffects);
-                    potionEffects.remove(potionEffects.get(index));
-                    ItemStack resultItemStack = plugin.getMechanicManager().setItemPotionEffects(player.getInventory().getContents()[itemSlot], newPotionsEffects);
-                    player.getInventory().setItem(itemSlot, resultItemStack);
+                    player.getInventory().setItem(itemSlot, plugin.getMechanicManager().removePotionEffect(player.getInventory().getItem(itemSlot), potionEffects.get(index).getType()));
                     plugin.getInventoryManager().openInventory(player, new PotionEffectInventory(plugin, player, itemSlot, page));
                 });
             }

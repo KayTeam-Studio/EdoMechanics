@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.kayteam.edomechanics.EdoMechanics;
@@ -39,6 +40,13 @@ public class MechanicManager {
 
     public Map<MechanicType, Class<? extends Projectile>> getProjectileTypes(){
         return projectileTypes;
+    }
+
+    public ItemStack removePotionEffect(ItemStack itemStack, PotionEffectType potionEffectType){
+        List<PotionEffect> potionEffects = getItemPotionEffects(itemStack);
+        potionEffects.removeIf(potionEffect -> potionEffect.getType().getName().equals(potionEffectType.getName()));
+        ItemStack newItem = setItemPotionEffects(itemStack, potionEffects);
+        return updateItem(newItem);
     }
 
     public ItemStack clearItemPotionEffects(ItemStack itemStack){
