@@ -8,11 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.TridentMechanicEvent;
-import org.kayteam.edomechanics.events.WitherSkullMechanicEvent;
 import org.kayteam.edomechanics.mechanics.MechanicType;
-import org.kayteam.edomechanics.mechanics.mechanics.SnowballMechanic;
 import org.kayteam.edomechanics.mechanics.mechanics.TridentMechanic;
-import org.kayteam.edomechanics.mechanics.mechanics.WitherSkullMechanic;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
 import java.util.HashMap;

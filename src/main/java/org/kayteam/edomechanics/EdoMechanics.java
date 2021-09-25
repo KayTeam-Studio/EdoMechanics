@@ -58,7 +58,9 @@ public final class EdoMechanics extends JavaPlugin {
     }
 
     public void onReload() {
-
+        settings.reloadFileConfiguration();
+        inventories.reloadFileConfiguration();
+        messages.reloadFileConfiguration();
     }
 
     private void registerFiles() {

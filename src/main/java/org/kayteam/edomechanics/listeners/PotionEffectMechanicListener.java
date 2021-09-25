@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.PotionEffectMechanicEvent;
 import org.kayteam.edomechanics.mechanics.MechanicType;
-import org.kayteam.edomechanics.mechanics.mechanics.LightningMechanic;
 import org.kayteam.edomechanics.mechanics.mechanics.PotionEffectMechanic;
 import org.kayteam.kayteamapi.yaml.Yaml;
 

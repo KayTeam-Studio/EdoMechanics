@@ -2,11 +2,9 @@ package org.kayteam.edomechanics.listeners;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.kayteamapi.yaml.Yaml;
 

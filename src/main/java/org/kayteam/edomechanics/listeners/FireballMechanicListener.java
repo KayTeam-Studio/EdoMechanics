@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.FireballMechanicEvent;
 import org.kayteam.edomechanics.mechanics.MechanicType;
-import org.kayteam.edomechanics.mechanics.mechanics.EggMechanic;
 import org.kayteam.edomechanics.mechanics.mechanics.FireballMechanic;
 import org.kayteam.kayteamapi.yaml.Yaml;
 

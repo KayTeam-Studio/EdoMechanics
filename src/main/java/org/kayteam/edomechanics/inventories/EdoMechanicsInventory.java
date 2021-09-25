@@ -6,7 +6,6 @@ import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.inventories.editor.ItemEditorInventory;
 import org.kayteam.edomechanics.inventories.editor.MechanicListInventory;
-import org.kayteam.edomechanics.inventories.editor.MechanicsInventory;
 import org.kayteam.edomechanics.inventories.editor.WorldEditorInventory;
 import org.kayteam.kayteamapi.input.inputs.DropInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
@@ -33,12 +32,9 @@ public class EdoMechanicsInventory extends InventoryBuilder {
             plugin.getInputManager().addInput(player, new DropInput() {
                 @Override
                 public void onPLayerDrop(Player player, ItemStack itemStack) {
-                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                        @Override
-                        public void run() {
-                            int itemSlot = Arrays.asList(player.getInventory().getContents()).indexOf(itemStack);
-                            plugin.getInventoryManager().openInventory(player, new ItemEditorInventory(plugin, player, itemSlot));
-                        }
+                    Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                        int itemSlot = Arrays.asList(player.getInventory().getContents()).indexOf(itemStack);
+                        plugin.getInventoryManager().openInventory(player, new ItemEditorInventory(plugin, player, itemSlot));
                     }, 1);
                 }
 
@@ -54,5 +50,12 @@ public class EdoMechanicsInventory extends InventoryBuilder {
         // Worlds Settings
         addItem(15, () -> inventories.getItemStack("edoMechanics.items.worldSettings"));
         addLeftAction(15, (player, i) -> plugin.getInventoryManager().openInventory(player, new WorldEditorInventory(plugin, 1)));
+        // Reload
+        addItem(31, () -> inventories.getItemStack("edoMechanics.items.reload"));
+        addLeftAction(31, ((player, i) -> {
+            player.closeInventory();
+            plugin.getMessages().sendMessage(player, "edoMechanics.reloaded");
+            plugin.onReload();
+        }));
     }
 }

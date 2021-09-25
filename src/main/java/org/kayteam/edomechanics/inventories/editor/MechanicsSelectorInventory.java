@@ -16,6 +16,7 @@ public class MechanicsSelectorInventory extends InventoryBuilder {
     public MechanicsSelectorInventory(EdoMechanics plugin, Player player, int itemSlot, int page){
         super(plugin.getInventories().getString("mechanicsSelector.title"), 6);
         Yaml inventories = plugin.getInventories();
+        ItemStack itemStack = player.getInventory().getItem(itemSlot);
         // Fill
         fillItem(() -> inventories.getItemStack("mechanicsSelector.items.panel"), new int[]{1, 6});
         // Back
@@ -26,8 +27,10 @@ public class MechanicsSelectorInventory extends InventoryBuilder {
         addLeftAction(8, (player1, slot) -> player.closeInventory());
         // Mechanics
         MechanicType[] mechanicTypes = MechanicType.values();
-        List<MechanicType> mechanics = Arrays.asList(mechanicTypes);
-        // todo fix it -> mechanics.remove(MechanicType.POTION_EFFECT);
+        List<MechanicType> mechanics = new ArrayList<>(Arrays.asList(mechanicTypes));
+        mechanics.remove(MechanicType.POTION_EFFECT);
+        List<MechanicType> actualMechanics = plugin.getMechanicManager().getItemMechanics(itemStack);
+        mechanics.removeAll(actualMechanics);
         for (int i = 9; i < 45; i++) {
             int index = ((page * (4 * 9)) - (4 * 9)) + (i - 9);
             if (index < mechanics.size()) {
@@ -35,7 +38,7 @@ public class MechanicsSelectorInventory extends InventoryBuilder {
                         {"%mechanic_name%", mechanics.get(index).toString()}
                 }));
                 addLeftAction(i, (player1, slot) -> {
-                    ItemStack resultItemStack = plugin.getMechanicManager().addItemMechanic(player.getInventory().getContents()[itemSlot], mechanics.get(index));
+                    ItemStack resultItemStack = plugin.getMechanicManager().addItemMechanic(itemStack, mechanics.get(index));
                     player.getInventory().setItem(itemSlot, resultItemStack);
                     plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, player, itemSlot, 1));
                 });

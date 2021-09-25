@@ -1,6 +1,5 @@
 package org.kayteam.edomechanics.inventories.editor;
 
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.inventories.EdoMechanicsInventory;
@@ -30,7 +29,6 @@ public class WorldEditorInventory extends InventoryBuilder {
                 World world = worlds.get(index);
                 addItem(i, () -> {
                     List<String> enabledWorlds = settings.getStringList("enabledWorlds");
-                    String status;
                     if (enabledWorlds.contains(world.getName())) {
                         return Yaml.replace(inventories.getItemStack("worldEditor.items.worldEnabled"), new String[][] {{"%world%", world.getName()}});
                     } else {

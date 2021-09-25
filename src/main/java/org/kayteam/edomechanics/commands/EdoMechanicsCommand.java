@@ -14,16 +14,13 @@ public class EdoMechanicsCommand extends SimpleCommand {
     public EdoMechanicsCommand(EdoMechanics plugin) {
         super("EdoMechanics");
         this.plugin = plugin;
+        setPermission("edomechanics.admin");
+        setPermissionMessage("edoMechanics.noPermission");
     }
 
     @Override
     public void onPlayerExecute(Player player, String[] arguments) {
-        Yaml messages = plugin.getMessages();
-        if (player.hasPermission("edomechanics.admin")) {
-            plugin.getInventoryManager().openInventory(player, new EdoMechanicsInventory(plugin));
-        } else {
-            messages.sendMessage(player, "edoMechanics.noPermission");
-        }
+        plugin.getInventoryManager().openInventory(player, new EdoMechanicsInventory(plugin));
     }
 
     @Override

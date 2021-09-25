@@ -2,12 +2,10 @@ package org.kayteam.edomechanics.mechanics;
 
 import com.google.common.collect.ImmutableMap;
 import de.tr7zw.nbtapi.NBTItem;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.kayteam.edomechanics.EdoMechanics;
@@ -50,22 +48,26 @@ public class MechanicManager {
     }
 
     public ItemStack clearItemPotionEffects(ItemStack itemStack){
-        NBTItem nbtItem = new NBTItem(itemStack);
-        nbtItem.setObject("potionEffects", null);
-        List<MechanicType> mechanicTypes = getItemMechanics(nbtItem.getItem());
-        return setItemMechanics(nbtItem.getItem(), mechanicTypes);
-    }
-
-    public ItemStack addItemPotionEffects(ItemStack itemStack, List<PotionEffect> potionEffects){
-        List<PotionEffect> potionEffectList = (List<PotionEffect>) getItemPotionEffects(itemStack);
-        potionEffectList.addAll(potionEffects);
-        return setItemPotionEffects(itemStack, potionEffectList);
+        List<PotionEffect> potionEffects = new ArrayList<>();
+        ItemStack newItem = setItemPotionEffects(itemStack, potionEffects);
+        List<MechanicType> mechanicTypes = getItemMechanics(newItem);
+        mechanicTypes.remove(MechanicType.POTION_EFFECT);
+        return setItemMechanics(newItem, mechanicTypes);
     }
 
     public ItemStack addItemPotionEffect(ItemStack itemStack, PotionEffect potionEffect){
         List<PotionEffect> potionEffects = getItemPotionEffects(itemStack);
         potionEffects.add(potionEffect);
         return setItemPotionEffects(itemStack, potionEffects);
+    }
+
+    public List<PotionEffectType> getItemPotionEffectTypes(ItemStack itemStack){
+        List<PotionEffectType> potionEffectTypes = new ArrayList<>();
+        List<PotionEffect> potionEffects = getItemPotionEffects(itemStack);
+        for(PotionEffect potionEffect : potionEffects){
+            potionEffectTypes.add(PotionEffectType.getByName(potionEffect.getType().getName()));
+        }
+        return potionEffectTypes;
     }
 
     public List<PotionEffect> getItemPotionEffects(ItemStack itemStack){
@@ -95,29 +97,37 @@ public class MechanicManager {
     public ItemStack setItemPotionEffects(ItemStack itemStack, List<PotionEffect> potionEffects){
         ItemStack newItem = itemStack;
         List<MechanicType> mechanicTypes = getItemMechanics(newItem);
-        if(!mechanicTypes.contains(MechanicType.POTION_EFFECT)){
-            newItem = addItemMechanic(newItem, MechanicType.POTION_EFFECT);
+        List<String> potionStringList = new ArrayList<>();
+        if(potionEffects.size() != 0){
+            if(!mechanicTypes.contains(MechanicType.POTION_EFFECT)){
+                newItem = addItemMechanic(newItem, MechanicType.POTION_EFFECT);
+            }
+            for(PotionEffect potionEffect : potionEffects){
+                potionStringList.add(potionEffect.getType().getName()+":"+potionEffect.getDuration()+":"+potionEffect.getAmplifier());
+            }
+
         }
         NBTItem nbtItem = new NBTItem(newItem);
-        List<String> potionStringList = new ArrayList<>();
-        nbtItem.setObject("potionEffects", null);
-        for(PotionEffect potionEffect : potionEffects){
-            potionStringList.add(potionEffect.getType().getName()+":"+potionEffect.getDuration()+":"+potionEffect.getAmplifier());
-        }
+        try{
+            while(nbtItem.getObject("potionEffects", List.class).size() != 0){
+                nbtItem.setObject("potionEffects", null);
+            }
+        }catch (Exception e){}
         nbtItem.setObject("potionEffects", potionStringList);
         return updateItem(nbtItem.getItem());
     }
 
-    public ItemStack setItemPotionEffect(ItemStack itemStack, PotionEffect potionEffect){
-        List<PotionEffect> potionEffectList = new ArrayList<>();
-        potionEffectList.add(potionEffect);
-        return setItemPotionEffects(itemStack, potionEffectList);
-    }
-
     public ItemStack updateItem(ItemStack itemStack){
-        List<String> itemLore = new ArrayList<>();
-        List<String> mechanicsStringList = new ArrayList<>();
         List<MechanicType> mechanicTypeList = getItemMechanics(itemStack);
+        List<PotionEffect> potionEffects = getItemPotionEffects(itemStack);
+        if(mechanicTypeList.size() == 0 && potionEffects.size() == 0){
+            ItemMeta itemMeta = itemStack.getItemMeta();
+            assert itemMeta != null;
+            itemMeta.setLore(new ArrayList<>());
+            itemStack.setItemMeta(itemMeta);
+            return itemStack;
+        }
+        List<String> itemLore = new ArrayList<>();
         for(String loreLine : plugin.getSettings().getStringList("items.mechanicsHeader")){
             itemLore.add(ChatColor.translateAlternateColorCodes('&', loreLine));
         }
@@ -126,9 +136,7 @@ public class MechanicManager {
                 itemLore.add(ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("items.mechanic",
                         new String[][]{{"%mechanic_name%", mechanic.toString()}})));
             }
-            mechanicsStringList.add(mechanic.toString());
         }
-        List<PotionEffect> potionEffects = getItemPotionEffects(itemStack);
         for(PotionEffect potionEffect : potionEffects){
             itemLore.add(ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("items.potionEffect",
                     new String[][] {
@@ -143,12 +151,7 @@ public class MechanicManager {
         assert itemMeta != null;
         itemMeta.setLore(itemLore);
         itemStack.setItemMeta(itemMeta);
-        NBTItem nbtItem = new NBTItem(itemStack);
-        while(getItemMechanics(nbtItem.getItem()).size() != 0){
-            nbtItem.setObject("mechanics", null);
-        }
-        nbtItem.setObject("mechanics", mechanicsStringList);
-        return nbtItem.getItem();
+        return itemStack;
     }
 
     public ItemStack setItemMechanics(ItemStack itemStack, List<MechanicType> mechanicTypeList){
@@ -164,12 +167,6 @@ public class MechanicManager {
         return updateItem(nbtItem.getItem());
     }
 
-    public ItemStack setItemMechanic(ItemStack itemStack, MechanicType mechanicType){
-        List<MechanicType> mechanicTypes = new ArrayList<>();
-        mechanicTypes.add(mechanicType);
-        return setItemMechanics(itemStack, mechanicTypes);
-    }
-
     public List<MechanicType> getItemMechanics(ItemStack itemStack){
         NBTItem nbtItem = new NBTItem(itemStack);
         List<MechanicType> mechanicTypes = new ArrayList<>();
@@ -181,15 +178,17 @@ public class MechanicManager {
         return mechanicTypes;
     }
 
-    public ItemStack addItemMechanic(ItemStack itemStack, MechanicType mechanicType){
-        List<MechanicType> mechanicTypes = getItemMechanics(itemStack);
-        mechanicTypes.add(mechanicType);
+    public ItemStack clearItemMechanics(ItemStack itemStack){
+        List<MechanicType> mechanicTypes = new ArrayList<>();
+        if(getItemPotionEffects(itemStack).size()>0){
+            mechanicTypes.add(MechanicType.POTION_EFFECT);
+        }
         return setItemMechanics(itemStack, mechanicTypes);
     }
 
-    public ItemStack addItemMechanics(ItemStack itemStack, List<MechanicType> mechanicTypeList){
+    public ItemStack addItemMechanic(ItemStack itemStack, MechanicType mechanicType){
         List<MechanicType> mechanicTypes = getItemMechanics(itemStack);
-        mechanicTypes.addAll(mechanicTypeList);
+        mechanicTypes.add(mechanicType);
         return setItemMechanics(itemStack, mechanicTypes);
     }
 
@@ -198,13 +197,6 @@ public class MechanicManager {
         while(mechanicTypes.contains(mechanicType)){
             mechanicTypes.remove(mechanicType);
         }
-        Bukkit.getLogger().info("Remove "+mechanicTypes.toString());
-        return setItemMechanics(itemStack, mechanicTypes);
-    }
-
-    public ItemStack removeItemMechanics(ItemStack itemStack, List<MechanicType> mechanicTypeList){
-        List<MechanicType> mechanicTypes = getItemMechanics(itemStack);
-        mechanicTypes.removeAll(mechanicTypeList);
         return setItemMechanics(itemStack, mechanicTypes);
     }
 }

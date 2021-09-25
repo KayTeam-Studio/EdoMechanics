@@ -10,10 +10,10 @@ itemEditor:
 potionEffectSelector:
   chatInput:
     durationInput: "%prefix% &fInput in the chat potion duration. Press SHIFT to cancel."
-    amplifierInput: "%prefix% &fInput in the chat potion amplifier. Press SHIFT to cancel."
+    amplifierInput: "%prefix% &fInput in the chat potion level. Press SHIFT to cancel."
 mechanics:
-  noPermission: "%prefix% &fYou don't have permission to use &e%mechanic_name%&f"
-  inCooldown: "%prefix% &fThe mechanic are in cooldown! Wait &e%seconds% seconds&f to use."
+  noPermission: "&fYou don't have permission to use &e%mechanic_name%&f mechanic"
+  inCooldown: "&fThe mechanic are in cooldown! Wait &e%seconds% seconds&f to use."
   inputNewPermissionToUse: "%prefix% &fEnter in the chat the new permission to use."
   inputNewPermissionToBypassCooldown: "%prefix% &fEnter in the chat the new permission to bypass cooldown."
 

@@ -2,7 +2,7 @@ name: EdoMechanics
 version: '${project.version}'
 main: org.kayteam.edomechanics.EdoMechanics
 api-version: 1.13
-loadbefore: [ NBTAPI ]
+loadbefore: [ NBTAPI, PlaceholderAPI ]
 depend: [ NBTAPI ]
 softdepend: [ PlaceholderAPI ]
 authors: [ segu23, SirOswaldo ]

@@ -10,28 +10,35 @@ import org.kayteam.kayteamapi.input.inputs.ChatInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class PotionEffectSelectorInventory extends InventoryBuilder {
 
     private int potionAmplifier;
     private int potionDuration;
 
-    public PotionEffectSelectorInventory(EdoMechanics plugin, int itemSlot, int page){
+    public PotionEffectSelectorInventory(EdoMechanics plugin, Player player, int itemSlot, int page){
         super(plugin.getInventories().getString("potionEffectSelector.title"), 6);
         Yaml inventories = plugin.getInventories();
+        ItemStack itemStack = player.getInventory().getItem(itemSlot);
         fillItem(() -> inventories.getItemStack("potionEffectSelector.items.panel"), new int[] {1, 6});
         // Back
         addItem(0, () -> inventories.getItemStack("potionEffectSelector.items.back"));
-        addLeftAction(0, (player, i) -> plugin.getInventoryManager().openInventory(player, new EdoMechanicsInventory(plugin)));
+        addLeftAction(0, (player1, i) -> plugin.getInventoryManager().openInventory(player, new EdoMechanicsInventory(plugin)));
         // Close
         addItem(8, () -> inventories.getItemStack("potionEffectSelector.items.close"));
-        addLeftAction(8, (player, i) -> player.closeInventory());
+        addLeftAction(8, (player1, i) -> player.closeInventory());
         // POTION EFFECTS
-        PotionEffectType[] potionEffects = PotionEffectType.values();
+        PotionEffectType[] potionEffectTypes = PotionEffectType.values();
+        List<PotionEffectType> potionEffects = new ArrayList<>(Arrays.asList(potionEffectTypes));
+        potionEffects.removeAll(plugin.getMechanicManager().getItemPotionEffectTypes(itemStack));
         for (int i = 9; i < 45; i++) {
             int index = ((page * (4 * 9)) - (4 * 9)) + (i - 9);
-            if (index < potionEffects.length) {
-                addItem(i, () -> Yaml.replace(inventories.getItemStack("potionEffectSelector.items.potion"), new String[][] {{"%effect_name%", potionEffects[index].getName()}}));
-                addLeftAction(i, (player, slot) -> {
+            if (index < potionEffects.size()) {
+                addItem(i, () -> Yaml.replace(inventories.getItemStack("potionEffectSelector.items.potion"), new String[][] {{"%effect_name%", potionEffects.get(index).getName()}}));
+                addLeftAction(i, (player1, slot) -> {
                     player.closeInventory();
                     Yaml messages = plugin.getMessages();
                     messages.sendMessage(player, "potionEffectSelector.chatInput.durationInput");
@@ -41,33 +48,28 @@ public class PotionEffectSelectorInventory extends InventoryBuilder {
                             try{
                                 potionDuration = Integer.parseInt(s);
                                 messages.sendMessage(player, "potionEffectSelector.chatInput.amplifierInput");
-                                plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
+                                plugin.getServer().getScheduler().runTaskLater(plugin, () -> plugin.getInputManager().addInput(player, new ChatInput() {
                                     @Override
-                                    public void run() {
-                                        plugin.getInputManager().addInput(player, new ChatInput() {
-                                            @Override
-                                            public boolean onChatInput(Player player, String ss) {
-                                                try{
-                                                    potionAmplifier = Integer.parseInt(ss);
-                                                    PotionEffect potionEffect = new PotionEffect(potionEffects[index], potionDuration, potionAmplifier-1);
-                                                    ItemStack newItem = plugin.getMechanicManager()
-                                                            .addItemPotionEffect(player.getInventory().getItem(itemSlot), potionEffect);
-                                                    player.getInventory().setItem(itemSlot, newItem);
-                                                    plugin.getInventoryManager().openInventory(player, new PotionEffectInventory(plugin, player, itemSlot, 1));
-                                                    return true;
-                                                }catch (Exception e){
-                                                    messages.sendMessage(player, "potionEffectSelector.chatInput.amplifierInput");
-                                                    return false;
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onPlayerSneak(Player player) {
-                                                plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, page));
-                                            }
-                                        });
+                                    public boolean onChatInput(Player player2, String ss) {
+                                        try{
+                                            potionAmplifier = Integer.parseInt(ss);
+                                            PotionEffect potionEffect = new PotionEffect(potionEffects.get(index), potionDuration, potionAmplifier-1);
+                                            ItemStack newItem = plugin.getMechanicManager()
+                                                    .addItemPotionEffect(itemStack, potionEffect);
+                                            player2.getInventory().setItem(itemSlot, newItem);
+                                            plugin.getInventoryManager().openInventory(player2, new PotionEffectInventory(plugin, player2, itemSlot, 1));
+                                            return true;
+                                        }catch (Exception e){
+                                            messages.sendMessage(player2, "potionEffectSelector.chatInput.amplifierInput");
+                                            return false;
+                                        }
                                     }
-                                }, 5);
+
+                                    @Override
+                                    public void onPlayerSneak(Player player2) {
+                                        plugin.getInventoryManager().openInventory(player2, new PotionEffectSelectorInventory(plugin, player2, itemSlot, page));
+                                    }
+                                }), 5);
                                 return true;
                             }catch (Exception e){
                                 messages.sendMessage(player, "potionEffectSelector.chatInput.durationInput");
@@ -77,7 +79,7 @@ public class PotionEffectSelectorInventory extends InventoryBuilder {
 
                         @Override
                         public void onPlayerSneak(Player player) {
-                            plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, page));
+                            plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, player, itemSlot, page));
                         }
                     });
                 });
@@ -86,12 +88,12 @@ public class PotionEffectSelectorInventory extends InventoryBuilder {
         // PreviousPage
         if (page > 1) {
             addItem(45, () -> inventories.getItemStack("potionEffectSelector.items.previousPage"));
-            addLeftAction(45, (player, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, page - 1)));
+            addLeftAction(45, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, player, itemSlot, page - 1)));
         }
         // NextPage
-        if (potionEffects.length > (page * (4 * 9))) {
+        if (potionEffects.size() > (page * (4 * 9))) {
             addItem(53, () -> inventories.getItemStack("potionEffectSelector.items.nextPage"));
-            addLeftAction(53, (player, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, itemSlot, page + 1)));
+            addLeftAction(53, (player1, slot) -> plugin.getInventoryManager().openInventory(player, new PotionEffectSelectorInventory(plugin, player, itemSlot, page + 1)));
         }
     }
 }

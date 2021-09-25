@@ -24,6 +24,12 @@ edoMechanics:
       lore:
         - "&6"
         - "&7Left Click to edit worlds settings"
+    reload:
+      material: REDSTONE_BLOCK
+      name: "&6Reload plugin"
+      lore:
+        - "&6"
+        - "&7Left Click to reload plugin"
 itemMechanicsEditor:
   title: "Item Mechanics Editor"
   items:
@@ -47,6 +53,18 @@ itemMechanicsEditor:
       lore:
         - "&6"
         - "&7Left Click to open"
+    clearPotionEffects:
+      material: TNT
+      name: "&6Clear Item Potion Effects"
+      lore:
+        - "&6"
+        - "&7Left Click to clear"
+    clearMechanics:
+      material: TNT
+      name: "&6Clear Item Mechanics"
+      lore:
+        - "&6"
+        - "&7Left Click to clear"
 mechanics:
   title: "Mechanics"
   items:
@@ -263,7 +281,7 @@ potionEffects:
         - "&6"
         - "&7Left Click to go"
     potionEffect:
-      material: PAPER
+      material: POTION
       name: "&6%effect_name%"
       lore:
         - "&6"

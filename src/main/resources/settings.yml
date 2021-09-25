@@ -1,9 +1,9 @@
 items:
-  potionEffect: " &f- &l&o%effect_name% %effect_level% &fx &l&o%effect_duration%sec"
   mechanicsHeader:
     - "&6"
     - " &6&lITEM MECHANICS"
     - "&6"
+  potionEffect: " &f- &l&o%effect_name% %effect_level% &fx &l&o%effect_duration%sec"
   mechanic: " &f- &l&o%mechanic_name%"
   mechanicsFooter:
     - "&6"

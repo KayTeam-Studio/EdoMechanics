@@ -10,7 +10,6 @@ import org.kayteam.edomechanics.EdoMechanics;
 import org.kayteam.edomechanics.events.ArrowMechanicEvent;
 import org.kayteam.edomechanics.mechanics.MechanicType;
 import org.kayteam.edomechanics.mechanics.mechanics.ArrowMechanic;
-import org.kayteam.edomechanics.mechanics.mechanics.WitherSkullMechanic;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
 import java.util.HashMap;

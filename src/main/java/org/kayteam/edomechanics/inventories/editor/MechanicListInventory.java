@@ -7,9 +7,6 @@ import org.kayteam.edomechanics.mechanics.MechanicType;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class MechanicListInventory extends InventoryBuilder {
 
     public MechanicListInventory(EdoMechanics plugin) {

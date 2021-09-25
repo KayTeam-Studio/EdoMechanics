@@ -1,6 +1,5 @@
 package org.kayteam.edomechanics.inventories.editor;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.kayteam.edomechanics.EdoMechanics;
@@ -15,6 +14,7 @@ public class MechanicsInventory extends InventoryBuilder {
     public MechanicsInventory(EdoMechanics plugin, Player player, int itemSlot, int page) {
         super(plugin.getInventories().getString("mechanics.title"), 6);
         Yaml inventories = plugin.getInventories();
+        ItemStack itemStack = player.getInventory().getItem(itemSlot);
         // Fill
         fillItem(() -> inventories.getItemStack("mechanics.items.panel"), new int[] {1, 6});
         // Back
@@ -26,7 +26,8 @@ public class MechanicsInventory extends InventoryBuilder {
         // Preview
         addItem(4, () -> player.getInventory().getItem(itemSlot));
         // Mechanics
-        List<MechanicType> mechanics = plugin.getMechanicManager().getItemMechanics(player.getInventory().getContents()[itemSlot]);
+        List<MechanicType> mechanics = plugin.getMechanicManager().getItemMechanics(itemStack);
+        mechanics.remove(MechanicType.POTION_EFFECT);
         for (int i = 9; i < 45; i++) {
             int index = ((page * (4 * 9)) - (4 * 9)) + (i - 9);
             if (index < mechanics.size()) {
@@ -34,7 +35,7 @@ public class MechanicsInventory extends InventoryBuilder {
                         {"%mechanic_name%", mechanics.get(index).toString()}
                 }));
                 addLeftAction(i, (player1, slot) -> {
-                    ItemStack resultItemStack = plugin.getMechanicManager().removeItemMechanic(player.getInventory().getContents()[itemSlot], mechanics.get(index));
+                    ItemStack resultItemStack = plugin.getMechanicManager().removeItemMechanic(itemStack, mechanics.get(index));
                     player.getInventory().setItem(itemSlot, resultItemStack);
                     plugin.getInventoryManager().openInventory(player, new MechanicsInventory(plugin, player, itemSlot, page));
                 });
